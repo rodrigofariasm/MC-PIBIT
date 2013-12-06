@@ -1,0 +1,25 @@
+@(userForm : Form[User])
+
+@import helper._
+
+@main("Carona CG") {
+    
+    
+    <ul><h2>
+    "Carona CG"
+    </ul></h2>
+    
+    <h2>Faça o seu login aqui</h2>
+    
+   	@form(routes.Application.tentaLogin()) {
+        
+        @inputText(userForm("name"), '_label -> "E-mail:"	) 
+        @inputPassword(userForm("password"), '_label -> "Senha:")
+        <input type="submit" value="Create">
+        
+    }
+    
+    <ul> Ainda não é cadastrado? <a href="http:/cadastro">Cadastre-se aqui!</a>
+    </ul>
+    
+}
