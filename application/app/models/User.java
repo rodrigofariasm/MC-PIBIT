@@ -6,7 +6,7 @@ import javax.persistence.*;
 import play.db.ebean.*;
 import play.data.validation.*;
 
-@Entity
+
 public class User {
 	
 	
