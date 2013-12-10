@@ -13,8 +13,8 @@
     
    	@form(routes.Application.tentaLogin()) {
         
-        @inputText(userForm("name"), '_label -> "E-mail:"	) 
-        @inputPassword(userForm("password"), '_label -> "Senha:")
+        <li>@inputText(userForm("name"), '_label -> "E-mail:"	) </li>
+        <li>@inputPassword(userForm("password"), '_label -> "Senha:")</li>
         <input type="submit" value="Create">
         
     }

@@ -6,8 +6,7 @@ import javax.persistence.*;
 import play.db.ebean.*;
 import play.data.validation.*;
 
-@Entity
-public class User {
+public class NewUser {
 	
 	
 	@Constraints.Email
@@ -16,17 +15,15 @@ public class User {
 	@Constraints.Required
 	private String password;
 	
-	
-	public User(){
+	@Constraints.Required
+	private String rePassword;
+	public NewUser(){
 		
 	}
-	public User(String email, String password){
-		name = email; this.password = password;
+	public NewUser(String email, String password, String repassword){
+		name = email; this.password = password; rePassword = repassword;
 	}
 	
-	public static void create(User user){
-	//	user.save();
-	}
 	
 
 	public String getName() {
@@ -43,6 +40,13 @@ public class User {
 
 	public void setPassword(String password) {
 		this.password = password;
+	} 
+	public String getRePassword() {
+		return rePassword;
+	}
+
+	public void setRePassword(String password) {
+		this.rePassword = password;
 	} 
 	
 	public boolean equals(Object obj){ 
