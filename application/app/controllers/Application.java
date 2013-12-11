@@ -12,8 +12,7 @@ import java.util.Vector;;
 public class Application extends Controller {
 	Connection connection = DB.getConnection();
 	DataSource ds = DB.getDataSource();
-
-	static Form<NewUser> newUser = Form.form(NewUser.class);
+	
 	static Form<User> userForm = Form.form(User.class);
 	static Vector<User> listU = new Vector<User>();
 	public static Result index() {
@@ -42,27 +41,33 @@ public class Application extends Controller {
 	}
 
 	public static Result cadastro() {
-
-		return ok(views.html.cadastro.render(newUser));
+		return ok(views.html.cadastro.render());
 	}
 
 	public static Result cadastramento(){
-		Form <NewUser> filledForm = newUser.bindFromRequest();
-		if(filledForm.hasErrors()) {
+		DynamicForm newUser = Form.form().bindFromRequest();
+		String email = newUser.get("name");
+		String password = newUser.get("password");
+		String rePassword = newUser.get("rePassword");
+		if(newUser.hasErrors()) {
 			return badRequest(
-					views.html.cadastro.render(filledForm)
+					views.html.cadastro.render()
 					);
 		} else {
-			NewUser newU = filledForm.get();
-			if(newU.getPassword().equals(newU.getRePassword())){
-				User Us = new User(newU.getName(), newU.getPassword());
-				if(!listU.contains(Us)){
-					listU.add(Us);
-					return redirect(routes.Application.login());
-				}else return redirect(routes.Application.cadastro());
-			}else return(badRequest(views.html.cadastro.render(filledForm)));
 			
+			if(password.equals(rePassword)){
+				User cadastrado = new User(email, password);
+				if(listU.contains(cadastrado)){
+					return ok(views.html.cadastro.render());
+				}else{
+					listU.add(cadastrado);
+				}
+				return ok(views.html.index.render(userForm));
+			}else{
+				return ok(views.html.cadastro.render());
+			}
 		}
+		
 	}
 
 

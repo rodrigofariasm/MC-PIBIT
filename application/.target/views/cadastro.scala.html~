@@ -1,4 +1,4 @@
-@(userForm : Form[User])
+@()
 
 @import helper._
 
@@ -12,16 +12,17 @@
     <h2>Faça aqui o seu cadastro!</h2>
     
    	@form(routes.Application.cadastramento()) {
-        
-        @inputText(newUserForm("name"), '_label -> "E-mail:"	) 
-        @inputPassword(newUserForm("password"), '_label -> "Senha:")
-        @inputPassword(newUserForm("password"), '_label -> "Coloque a senha novamente:")
-        
-        <input type="submit" value="Create">
+		<form> Email: <input type="email" name="name"><br>
+			   Senha: <input type="password" name="password">
+			   Repita a senha: <input type="password" name="rePassword">
+	
+	
+		</form>  
+      
         
     }
     
-    <ul> Ainda não é cadastrado? <a href="http:/cadastro">Cadastre-se aqui!</a>
+    <ul> <a href="http:/login">Faça seu login!</a>
     </ul>
     
 }
