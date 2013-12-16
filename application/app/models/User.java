@@ -6,9 +6,11 @@ import javax.persistence.*;
 import play.db.ebean.*;
 import play.data.validation.*;
 
-
+@Entity
 public class User {
 	
+	@Id
+	private Long id;
 	
 	@Constraints.Email
 	private String name;
@@ -20,8 +22,9 @@ public class User {
 	public User(){
 		
 	}
-	public User(String email, String password){
+	public User(Long id, String email, String password){
 		name = email; this.password = password;
+		this.id = id;
 	}
 	
 	public static void create(User user){

@@ -12,7 +12,7 @@ import java.util.Vector;;
 public class Application extends Controller {
 	Connection connection = DB.getConnection();
 	DataSource ds = DB.getDataSource();
-	
+	static Long id = (long) 0;
 	static Form<User> userForm = Form.form(User.class);
 	static Vector<User> listU = new Vector<User>();
 	public static Result index() {
@@ -33,7 +33,7 @@ public class Application extends Controller {
 			if(listU.indexOf(filledForm.get()) != -1){
 				User logado = listU.get(listU.indexOf(filledForm.get()));
 				if(logado.getPassword().equals(filledForm.get().getPassword())){
-					return ok(logado.getName() + " " + logado.getPassword());
+					return ok(views.html.selCaronas.render(logado));
 				}
 			}
 				return redirect(routes.Application.login());
@@ -56,7 +56,7 @@ public class Application extends Controller {
 		} else {
 			
 			if(password.equals(rePassword)){
-				User cadastrado = new User(email, password);
+				User cadastrado = new User(++id, email, password);
 				if(listU.contains(cadastrado)){
 					return ok(views.html.cadastro.render());
 				}else{
