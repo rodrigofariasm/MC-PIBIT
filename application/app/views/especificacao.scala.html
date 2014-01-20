@@ -1,4 +1,4 @@
-@(user : User)
+@(kind : String)
 
 @import helper._
 
@@ -8,13 +8,26 @@
    	Por favor preencha os campos seguir
     </ul></h2>
     
-
-   	@form(routes.Sistema.selecionadoTipo()) {
-       	<input type="radio" name="typeUser" value="driver">Motorista<br>
-		<input type="radio" name="typeUser" value="guest">Caroneiro 
-        <input type="submit" value="Create">
-		
-    }
-	 
-    
+	@if(kind == "driver"){
+   		@form(routes.Sistema.especificado(kind)) {
+    	   	<br>
+    	   	<ul>Bairro:  <input  type = "text" name = "bairro", required = "true"></ul>
+    	    <ul>Numero de vagas<select name="vagas">
+    	    <option value="1"selected>1</option>
+   		    <option value="2">2</option>
+   	    	<option value="3">3</option>
+   	     	<option value="4">4</option>
+        	</select></ul>
+			<ul>Horario de saída<input type="datetime-local" name="horario" value="horario" required="true"><br></ul>
+			<ul><input type="submit" value="Create"></ul>
+         }
+	 }
+	 @if(kind == "guest"){
+	 	@form(routes.Sistema.especificado(kind)) {
+    	   	<br>
+    	   	<ul>Bairro:  <input  type = "text" name = "bairro", required = "true"></ul>
+			<ul>Horario de saída<input type="datetime-local" name="horario" value="horario" required="true"><br></ul>
+			<ul><input type="submit" value="Create"></ul>
+         }
+	 }
 }

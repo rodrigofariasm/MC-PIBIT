@@ -1,9 +1,8 @@
 package controllers;
 
+
 import java.sql.Connection;
 import javax.sql.DataSource;
-
-
 import play.db.*;
 import models.*;
 import play.mvc.*;
@@ -22,7 +21,21 @@ public class Sistema extends Controller {
 	public static Result selecionadoTipo(){
 		DynamicForm tipo = Form.form().bindFromRequest();
 		String kind = tipo.get("typeUser");
-		System.out.println(kind);
-		return ok(views.html.selCaronas.render(user));
+		if(kind == "motorista"){
+			user = new Motorista(user.getId(),user.getName(), user.getPassword(), null, 0, null);
+		}
+		return redirect(routes.Sistema.especifica(kind));
+	}
+	
+	public static Result especifica(String kind){
+		return ok(views.html.especificacao.render(kind));
+	}
+	
+	public static Result especificado(String kind){
+		DynamicForm info = Form.form().bindFromRequest();
+		String bairro = info.get("Bairro");
+		String vagas = info.get("vagas");
+		return ok(views.html.especificacao.render(kind));
+		
 	}
 }
