@@ -19,12 +19,8 @@ public class Sistema extends Controller {
 	}
 	
 	public static Result selecionadoTipo(){
-		DynamicForm tipo = Form.form().bindFromRequest();
-		String kind = tipo.get("typeUser");
-		if(kind == "motorista"){
-			user = new Motorista(user.getId(),user.getName(), user.getPassword(), null, 0, null);
-		}
-		return redirect(routes.Sistema.especifica(kind));
+		
+		return redirect(routes.Sistema.especifica());
 	}
 	
 	public static Result especifica(String kind){

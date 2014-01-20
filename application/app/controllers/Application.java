@@ -14,7 +14,8 @@ public class Application extends Controller {
 	DataSource ds = DB.getDataSource();
 	static Long id = (long) 0;
 	static Form<User> userForm = Form.form(User.class);
-	static Vector<User> listU = new Vector<User>();
+	private static SistemaL sistemaL = new SistemaL();
+	
 	public static Result index() {
 		return redirect(routes.Application.login());
 	}
@@ -30,11 +31,8 @@ public class Application extends Controller {
 					views.html.index.render(filledForm)
 					);
 		} else {
-			if(listU.indexOf(filledForm.get()) != -1){
-				User logado = listU.get(listU.indexOf(filledForm.get()));
-				if(logado.getPassword().equals(filledForm.get().getPassword())){
-					return ok(views.html.selCaronas.render(logado));
-				}
+			if(sistemaL.autenticaLogin(filledForm.get())){
+				return ok(views.html.selCaronas.render());
 			}
 				return redirect(routes.Application.login());
 		}
@@ -57,10 +55,10 @@ public class Application extends Controller {
 			
 			if(password.equals(rePassword)){
 				User cadastrado = new User(++id, email, password);
-				if(listU.contains(cadastrado)){
+				if(sistemaL.getUsers().contains(cadastrado)){
 					return ok(views.html.cadastro.render());
 				}else{
-					listU.add(cadastrado);
+					sistemaL.addUser(cadastrado);
 				}
 				return ok(views.html.index.render(userForm));
 			}else{
