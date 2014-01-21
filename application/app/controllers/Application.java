@@ -12,10 +12,9 @@ import java.util.Vector;;
 public class Application extends Controller {
 	Connection connection = DB.getConnection();
 	DataSource ds = DB.getDataSource();
-	static Long id = (long) 0;
 	static Form<User> userForm = Form.form(User.class);
 	private static SistemaL sistemaL = new SistemaL();
-	
+
 	public static Result index() {
 		return redirect(routes.Application.login());
 	}
@@ -34,7 +33,7 @@ public class Application extends Controller {
 			if(sistemaL.autenticaLogin(filledForm.get())){
 				return ok(views.html.selCaronas.render());
 			}
-				return redirect(routes.Application.login());
+			return redirect(routes.Application.login());
 		}
 	}
 
@@ -52,21 +51,37 @@ public class Application extends Controller {
 					views.html.cadastro.render()
 					);
 		} else {
-			
 			if(password.equals(rePassword)){
-				User cadastrado = new User(++id, email, password);
-				if(sistemaL.getUsers().contains(cadastrado)){
+				String st = sistemaL.criaUsuario(email, rePassword);
+				if(st.equals("email já cadastrado")){
 					return ok(views.html.cadastro.render());
-				}else{
-					sistemaL.addUser(cadastrado);
 				}
 				return ok(views.html.index.render(userForm));
 			}else{
 				return ok(views.html.cadastro.render());
 			}
 		}
-		
+
+	}
+	public static Result selecionarTipo(){
+		return ok(views.html.selCaronas.render(user));
 	}
 
+	public static Result selecionadoTipo(){
+
+		return redirect(routes.Sistema.especifica());
+	}
+
+	public static Result especifica(String kind){
+		return ok(views.html.especificacao.render(kind));
+	}
+
+	public static Result especificado(String kind){
+		DynamicForm info = Form.form().bindFromRequest();
+		String bairro = info.get("Bairro");
+		String vagas = info.get("vagas");
+		return ok(views.html.especificacao.render(kind));
+
+	}
 
 }
