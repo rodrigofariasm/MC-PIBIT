@@ -30,7 +30,7 @@ public class Application extends Controller {
 					views.html.index.render(filledForm)
 					);
 		} else {
-			if(sistemaL.autenticaLogin(filledForm.get())){
+			if(sistemaL.abrirSessao(filledForm.get())){
 				return ok(views.html.selCaronas.render());
 			}
 			return redirect(routes.Application.login());
