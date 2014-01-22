@@ -30,8 +30,8 @@ public class Application extends Controller {
 					views.html.index.render(filledForm)
 					);
 		} else {
-			if(sistemaL.abrirSessao(filledForm.get())){
-				return ok(views.html.selCaronas.render());
+			if(sistemaL.autenticaLogin(filledForm.get())){
+				return ok(views.html.selCaronas.render(filledForm.get()));
 			}
 			return redirect(routes.Application.login());
 		}
@@ -63,17 +63,19 @@ public class Application extends Controller {
 		}
 
 	}
-	public static Result selecionarTipo(){
-		return ok(views.html.selCaronas.render(user));
+	public static Result selecionarAcao(){
+		return ok(views.html.selCaronas.render(sistemaL.getUsers().get(0)));
 	}
 
-	public static Result selecionadoTipo(){
-
-		return redirect(routes.Sistema.especifica());
+	public static Result selecionadaAcao(){
+		DynamicForm option = Form.form().bindFromRequest();
+		String selecao = option.get("typeAction");
+		System.out.println(selecao);
+		return redirect(routes.Application.especifica(selecao));
 	}
 
-	public static Result especifica(String kind){
-		return ok(views.html.especificacao.render(kind));
+	public static Result especifica(String selecao){
+		return ok(views.html.especificacao.render(selecao));
 	}
 
 	public static Result especificado(String kind){

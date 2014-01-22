@@ -15,9 +15,22 @@ public class Sessao extends Controller {
 
 	
 	static private User user;
-	
-	public Sessao(User user){
+	static private long ID;
+	public Sessao(long ID, User user){
 		this.user = user;
+		this.ID = ID;
+	}
+	public static User getUser() {
+		return user;
+	}
+	public static void setUser(User user) {
+		Sessao.user = user;
+	}
+	public static long getID() {
+		return ID;
+	}
+	public static void setID(long iD) {
+		ID = iD;
 	}
 	
 	

@@ -11,8 +11,8 @@ GET   /cadastro                     controllers.Application.cadastro()
 POST  /login                        controllers.Application.tentaLogin()
 POST  /cadastro                     controllers.Application.cadastramento()
 #Pos-Login
-GET   /selCarona                    controllers.Application.selecionarTipo()
-POST  /selCarona                    controllers.Application.selecionadoTipo()
+GET   /selCarona                    controllers.Application.selecionarAcao()
+POST  /selCarona                    controllers.Application.selecionadaAcao()
 GET   /espec                        controllers.Application.especifica(String)
 POST  /espec                        controllers.Application.especificado(String)
 

@@ -18,6 +18,7 @@ public class User {
 	@Constraints.Required
 	private String password;
 	
+	private boolean sessaoAtiva = false;
 	
 	public User(){
 		
@@ -25,6 +26,10 @@ public class User {
 	public User(Long id, String email, String password){
 		name = email; this.password = password;
 		this.id = id;
+	}
+	
+	public void iniciarSessao(){
+		sessaoAtiva = true;
 	}
 	
 	public static void create(User user){
@@ -54,11 +59,13 @@ public class User {
 	public boolean equals(Object obj){ 
 	       if(obj instanceof User){ 
 	           User compara = (User)obj; 
-	           if(getName().equals(compara.getName())) 
+	           if(getName().equals(compara.getName()) && getId() == compara.getId()) 
 	               return true; 
 	       } 
 	       return false; 
 	}
+	
+	
 	
 	public String toString(){
 		return "" + name;
