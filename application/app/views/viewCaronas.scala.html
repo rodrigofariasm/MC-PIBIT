@@ -1,0 +1,12 @@
+@(caronas : List[Carona], solicitacoes : List[SolicitacaoCarona])
+
+@import helper._
+
+	<ul>
+        @for(carona <- caronas) {
+            <li>
+                @carona.getOrigem()
+                
+            </li>
+        }
+    </ul>

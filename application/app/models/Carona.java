@@ -25,7 +25,79 @@ public class Carona {
     	 this.caronas = new ArrayList<User>();
      }
      
-     private boolean verificaDataValida(String data) {
+     public String getOrigem() {
+		return origem;
+	}
+
+	public void setOrigem(String origem) {
+		this.origem = origem;
+	}
+
+	public String getDestino() {
+		return destino;
+	}
+
+	public void setDestino(String destino) {
+		this.destino = destino;
+	}
+
+	public String getData() {
+		return data;
+	}
+
+	public void setData(String data) {
+		this.data = data;
+	}
+
+	public String getHora() {
+		return hora;
+	}
+
+	public void setHora(String hora) {
+		this.hora = hora;
+	}
+
+	public String getVagas() {
+		return vagas;
+	}
+
+	public void setVagas(String vagas) {
+		this.vagas = vagas;
+	}
+
+	public String getID() {
+		return ID;
+	}
+
+	public void setID(String iD) {
+		ID = iD;
+	}
+
+	public User getMotorista() {
+		return motorista;
+	}
+
+	public void setMotorista(User motorista) {
+		this.motorista = motorista;
+	}
+
+	public List<User> getCaronas() {
+		return caronas;
+	}
+
+	public void setCaronas(List<User> caronas) {
+		this.caronas = caronas;
+	}
+
+	public String getPontoDeEncontro() {
+		return pontoDeEncontro;
+	}
+
+	public void setPontoDeEncontro(String pontoDeEncontro) {
+		this.pontoDeEncontro = pontoDeEncontro;
+	}
+
+	private boolean verificaDataValida(String data) {
          boolean dataValida = (data != null && !data.equals(""));
 
          SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
