@@ -9,17 +9,19 @@ import play.data.validation.*;
 import java.text.*;
 
 public class SistemaL {
+
+	private static Vector<User> users;
+	private static Vector<Carona> caronas;
+	private static long IDuser = 0, IDsessao = 0;
 	
-	static Vector<User> users;
-	private static long IDuser = 0;
 	public SistemaL(){
 		users = new Vector<User>();
 	}
-	
+
 	public Vector<User> getUsers(){
 		return users;
 	}
-	
+
 	public String criaUsuario(String email, String password){
 		User cadastrado = new User(++IDuser, email, password);
 		if(users.contains(cadastrado)){
@@ -29,12 +31,16 @@ public class SistemaL {
 			return "Cadastrado com sucesso";
 		}
 	}
-	
-	public Sessao abrirSessao(User u){
-		
+
+	public User iniciarSessao(User u) throws Exception{
+		if(autenticaLogin(u)){
+			return users.get(users.indexOf(u));
+		}else{
+			throw new Exception("Login Inválido");
+		}
 	}
-	
-	public boolean autenticaLogin(User u) throws Exception{
+
+	public boolean autenticaLogin(User u){
 		if (users.contains(u)){
 			int i = users.indexOf(u);
 			if(users.get(i).getPassword().equals(u.getPassword())){

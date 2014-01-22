@@ -5,14 +5,16 @@
 @main("Carona CG") {
     
     <ul><h2>
-    Olá prezado usuário
+    
     </ul></h2>
     
-    <h2>Você é motorista ou quer receber uma carona?</h2>
+    <h2>Escolha uma das opções abaixo</h2>
     
-   	@form(routes.Sistema.selecionadoTipo()) {
-       	<input type="radio" name="typeUser" value="driver">Motorista<br>
-		<input type="radio" name="typeUser" value="guest">Caroneiro 
+   	@form(routes.Application.selecionadoTipo()) {
+       	<ul><input type="radio" name="typeUser" value="criarCarona">Criar uma carona(motorista)</ul>
+		<ul><input type="radio" name="typeUser" value="solicitarCarona">Solicitar uma carona.</ul>
+		<ul><input type="radio" name="typeUser" value="verCaronas">Ver caronas disponiveis.</ul>
+		<ul><input type="radio" name="typeUser" value="verSol">Ver solicitações de carona.</ul>
         <input type="submit" value="Create">
 		
     }

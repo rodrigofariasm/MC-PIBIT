@@ -9,7 +9,7 @@
     </ul></h2>
     
 	@if(kind == "driver"){
-   		@form(routes.Sistema.especificado(kind)) {
+   		@form(routes.Application.especificado(kind)) {
     	   	<br>
     	   	<ul>Bairro:  <input  type = "text" name = "bairro", required = "true"></ul>
     	    <ul>Numero de vagas<select name="vagas">
@@ -18,15 +18,15 @@
    	    	<option value="3">3</option>
    	     	<option value="4">4</option>
         	</select></ul>
-			<ul>Horario de saída<input type="datetime-local" name="horario" value="horario" required="true"><br></ul>
+			<ul>Horario de saída<input type="text" name="horario" value="horario" required="true"><br></ul>
 			<ul><input type="submit" value="Create"></ul>
          }
 	 }
 	 @if(kind == "guest"){
-	 	@form(routes.Sistema.especificado(kind)) {
+	 	@form(routes.Application.especificado(kind)) {
     	   	<br>
     	   	<ul>Bairro:  <input  type = "text" name = "bairro", required = "true"></ul>
-			<ul>Horario de saída<input type="datetime-local" name="horario" value="horario" required="true"><br></ul>
+			<ul>Horario de saída<input type="text" name="horario" value="horario" required="true"><br></ul>
 			<ul><input type="submit" value="Create"></ul>
          }
 	 }

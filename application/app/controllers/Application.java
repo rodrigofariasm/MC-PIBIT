@@ -31,7 +31,7 @@ public class Application extends Controller {
 					);
 		} else {
 			if(sistemaL.autenticaLogin(filledForm.get())){
-				return ok(views.html.selCaronas.render());
+				return ok(views.html.selCaronas.render(filledForm.get()));
 			}
 			return redirect(routes.Application.login());
 		}
@@ -64,16 +64,16 @@ public class Application extends Controller {
 
 	}
 	public static Result selecionarTipo(){
-		return ok(views.html.selCaronas.render(user));
+		return ok(views.html.selCaronas.render(sistemaL.getUsers().get(0)));
 	}
 
 	public static Result selecionadoTipo(){
 
-		return redirect(routes.Sistema.especifica());
+		return redirect(routes.Application.especifica("motorista"));
 	}
 
 	public static Result especifica(String kind){
-		return ok(views.html.especificacao.render(kind));
+		return ok(views.html.especificacao.render("motorista"));
 	}
 
 	public static Result especificado(String kind){
