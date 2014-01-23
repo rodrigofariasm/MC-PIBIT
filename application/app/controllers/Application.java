@@ -23,14 +23,16 @@ public class Application extends Controller {
 		return ok(views.html.index.render(userForm));
 	}
 
-	public static Result tentaLogin(){
+	public static Result tentaLogin() throws Exception{
 		Form<User> filledForm = userForm.bindFromRequest();
+		
 		if(filledForm.hasErrors()) {
 			return badRequest(
 					views.html.index.render(filledForm)
 					);
 		} else {
 			if(sistemaL.autenticaLogin(filledForm.get())){
+				sistemaL.iniciarSessao(filledForm.get());
 				return ok(views.html.selCaronas.render(filledForm.get()));
 			}
 			return redirect(routes.Application.login());

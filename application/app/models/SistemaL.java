@@ -10,16 +10,26 @@ import java.text.*;
 
 public class SistemaL {
 
-	private static Vector<User> users;
-	private static Vector<Carona> caronas;
-	private static long IDuser = 0, IDcarona = 0, IDsessao = 0;
+	private static List<User> users;
+	private static List<Carona> caronas;
+	private static long IDuser = 0, IDcarona = 0;
 	
 	public SistemaL(){
-		users = new Vector<User>();
+		users = new ArrayList<User>();
+		caronas = new ArrayList<Carona>();
 	}
 
-	public Vector<User> getUsers(){
+	public List<User> getUsers(){
 		return users;
+	}
+	
+	public User getUserPorEmail(String email)throws Exception{
+		for (User u : users) {
+			if(u.getName().equals(email)){
+				return u;
+			}
+		}
+		throw new Exception("Usuario não encontrado");
 	}
 
 	public String criaUsuario(String email, String password){
@@ -33,21 +43,41 @@ public class SistemaL {
 		return "Cadastrado com sucesso";
 	}
 
-	public User iniciarSessao(User u) throws Exception{
+	public long iniciarSessao(User u) throws Exception{
 		if(autenticaLogin(u)){
-			return users.get(users.indexOf(u));
+			User logado = getUserPorEmail(u.getName());
+			logado.iniciarSessao();
+			return logado.getId();
 		}else{
 			throw new Exception("Login Inválido");
 		}
 	}
 
-	public boolean autenticaLogin(User u){
+	public boolean autenticaLogin(User u) throws Exception{
 		if (users.contains(u)){
-			int i = users.indexOf(u);
-			if(users.get(i).getPassword().equals(u.getPassword())){
+			User log = getUserPorEmail(u.getName());
+			if(log.getPassword().equals(u.getPassword())){
 				return true;
 			}
 		}
 		return false;
 	}
+	
+	public Carona criarCarona(long ID, String origem, String destino, String data, String hora,
+            String vagas, String email) throws Exception{
+		if(getUserPorEmail(email).isSessaoAtiva()){
+			return new Carona(ID, origem, destino, data, hora, vagas, getUserPorEmail(email));
+		}else{
+			throw new Exception("Realize o login");
+		}
+	}
+	public SolicitacaoCarona solicitarCarona(String origem, String destino, String data, String hora,
+			 long ID, String email) throws Exception{
+		if(getUserPorEmail(email).isSessaoAtiva()){
+			return new SolicitacaoCarona(ID, origem, destino, data, hora, getUserPorEmail(email));
+		}else{
+			throw new Exception("Realize o login");
+		}
+	}
+	
 }

@@ -9,7 +9,6 @@ import play.data.validation.*;
 @Entity
 public class User {
 	
-	@Id
 	private Long id;
 	
 	@Constraints.Email
@@ -40,6 +39,10 @@ public class User {
 		return this.id;
 	}
 	
+	public void setId(long id){
+		this.id = id;
+	}
+	
 	public String getName() {
 		return name;
 	}
@@ -59,7 +62,7 @@ public class User {
 	public boolean equals(Object obj){ 
 	       if(obj instanceof User){ 
 	           User compara = (User)obj; 
-	           if(getName().equals(compara.getName()) && getId() == compara.getId()) 
+	           if(getName().equals(compara.getName())) 
 	               return true; 
 	       } 
 	       return false; 
@@ -67,6 +70,12 @@ public class User {
 	
 	
 	
+	public boolean isSessaoAtiva() {
+		return sessaoAtiva;
+	}
+	public void setSessaoAtiva(boolean sessaoAtiva) {
+		this.sessaoAtiva = sessaoAtiva;
+	}
 	public String toString(){
 		return "" + name;
 	}

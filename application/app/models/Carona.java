@@ -9,13 +9,15 @@ import play.data.validation.*;
 import java.text.*;
 
 public class Carona {
-	 private String origem, destino, data, hora, vagas, ID;
+	 long ID;
+	 private String origem, destino, data, hora, vagas;
 	 private User motorista;
      private List<User> caronas;
      private String pontoDeEncontro;
      
-     public Carona(String origem, String destino, String data, String hora,
+     public Carona(long ID, String origem, String destino, String data, String hora,
              String vagas, User motorista) throws Exception {
+    	 this.ID = ID;
     	 this.origem = origem;
     	 this.destino = destino;
     	 this.data = data;
@@ -65,11 +67,11 @@ public class Carona {
 		this.vagas = vagas;
 	}
 
-	public String getID() {
+	public long getID() {
 		return ID;
 	}
 
-	public void setID(String iD) {
+	public void setID(long iD) {
 		ID = iD;
 	}
 

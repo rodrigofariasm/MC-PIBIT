@@ -18,16 +18,22 @@
    	    	<option value="3">3</option>
    	     	<option value="4">4</option>
         	</select></ul>
-			<ul>Horario de saída<input type="date-time" name="horario" value="horario" required="true"><br></ul>
+			<li><ul>Horario de saída: Dia-Mes-Hora-Min<input type="text" name = "day" MAXLENGTH = "2" size="2" required="true">
+				<input type="text" name="month" MAXLENGTH="2" size="2" required="true">
+				<input type="text" name="hour" MAXLENGTH="2" size="2" required="true">
+				<input type="text" name="min" MAXLENGTH="2" size="2" required="true"></ul></li>
 			<ul><input type="submit" value="Criar"></ul>
          }
 	 }
 	 @if(kind == "solicitarCarona"){
 	 	@form(routes.Application.especificado(kind)) {
     	   	<br>
-    	   	<ul>Bairro:  <input  type = "text" name = "bairro", required = "true"></ul>
-			<ul>Pontos de encontro:  <input  type = "text" name = "point"></ul>
-			<ul>Horario de saída<input type="text" name="horario"  required="true"><br></ul>
+    	   	<ul>Bairro:  <input  type = "text" name="bairro", required="true"></ul>
+			<ul>Pontos de encontro:  <input  type = "text" name="point"></ul>
+			<li><ul>Horario de saída: Dia-Mes-Hora-Min<input type="text" name = "day" MAXLENGTH = "2" size="2" required="true">
+				<input type="text" name="month" MAXLENGTH="2" size="2" required="true">
+				<input type="text" name="hour" MAXLENGTH="2" size="2" required="true">
+				<input type="text" name="min" MAXLENGTH="2" size="2" required="true"></ul></li>
 			<ul><input type="submit" value="Solicitar"></ul>
          }
 	 }

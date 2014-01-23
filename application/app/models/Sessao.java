@@ -13,12 +13,13 @@ import views.html.*;
 import java.util.Vector;
 public class Sessao extends Controller {
 
-	
+	static boolean sessaoAtiva;
 	static private User user;
 	static private long ID;
 	public Sessao(long ID, User user){
 		this.user = user;
 		this.ID = ID;
+		this.sessaoAtiva = true;
 	}
 	public static User getUser() {
 		return user;
@@ -33,5 +34,20 @@ public class Sessao extends Controller {
 		ID = iD;
 	}
 	
+	public Carona criarCarona(long ID, String origem, String destino, String data, String hora,
+            String vagas) throws Exception{
+		Carona carona = new Carona(ID, origem, destino, data, hora, vagas, user);
+		return carona;
+	}
+	public SolicitacaoCarona solicitarCarona(String origem, String destino, String data, String hora,
+			 long ID){
+		return new SolicitacaoCarona(ID, origem, destino, data, hora, user);
+	}
 	
+	public static boolean isSessaoAtiva() {
+		return sessaoAtiva;
+	}
+	public static void setSessaoAtiva(boolean sessaoAtiva) {
+		Sessao.sessaoAtiva = sessaoAtiva;
+	}
 }

@@ -12,6 +12,7 @@ public class testCadastroLogin {
 	public void setUp(){
 		sistema = new SistemaL();
 		sistema.criaUsuario("abacate@gmail.com", "123456");
+		
 	}
 	
 	
@@ -22,15 +23,14 @@ public class testCadastroLogin {
 		assertEquals(sistema.getUsers().size(), 2);
 		assertEquals(u, sistema.getUsers().get(1));
 		assertEquals(retorno, "Cadastrado com sucesso");
-		User v = new User((long) 3, "castanha@gmail.com", "12346");
 		retorno = sistema.criaUsuario("castanha@gmail.com", "12346");
 		assertEquals(retorno, "email já cadastrado");
-		assertFalse(sistema.getUsers().contains(v));
 	}
 	
 	@Test
-	public void aoFazerLoginSessaoDeveSerIniciada(){
-		
+	public void aoFazerLoginSessaoDeveSerIniciada() throws Exception{
+		sistema.iniciarSessao(sistema.getUserPorEmail("abacate@gmail.com"));
+		assertTrue(sistema.getUserPorEmail("abacate@gmail.com").isSessaoAtiva());
 	}
 
 }
