@@ -1,4 +1,4 @@
-@(kind : String)
+@(id: Long, kind: String)
 
 @import helper._
 
@@ -9,7 +9,7 @@
     </ul></h2>
     
 	@if(kind == "criarCarona"){
-   		@form(routes.Application.especificado(kind)) {
+   		@form(routes.Application.especificado(id, kind)) {
     	   	<br>
     	   	<ul>Bairro:  <input  type = "text" name = "bairro", required = "true"></ul>
     	    <ul>Numero de vagas<select name="vagas">
@@ -26,7 +26,7 @@
          }
 	 }
 	 @if(kind == "solicitarCarona"){
-	 	@form(routes.Application.especificado(kind)) {
+	 	@form(routes.Application.especificado(id, kind)) {
     	   	<br>
     	   	<ul>Bairro:  <input  type = "text" name="bairro", required="true"></ul>
 			<ul>Pontos de encontro:  <input  type = "text" name="point"></ul>

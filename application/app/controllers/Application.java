@@ -32,8 +32,8 @@ public class Application extends Controller {
 					);
 		} else {
 			if(sistemaL.autenticaLogin(filledForm.get())){
-				sistemaL.iniciarSessao(filledForm.get());
-				return ok(views.html.selCaronas.render(filledForm.get()));
+				long id = sistemaL.iniciarSessao(filledForm.get());
+				return selecionarAcao(id);
 			}
 			return redirect(routes.Application.login());
 		}
@@ -65,11 +65,11 @@ public class Application extends Controller {
 		}
 
 	}
-	public static Result selecionarAcao(){
-		return ok(views.html.selCaronas.render(sistemaL.getUsers().get(0)));
+	public static Result selecionarAcao(long id){
+		return ok(views.html.selCaronas.render(id));
 	}
 
-	public static Result selecionadaAcao(){
+	public static Result selecionadaAcao(long id){
 		DynamicForm option = Form.form().bindFromRequest();
 		String selecao = option.get("typeAction");
 		System.out.println(selecao);

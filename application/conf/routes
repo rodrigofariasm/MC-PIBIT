@@ -11,10 +11,10 @@ GET   /cadastro                     controllers.Application.cadastro()
 POST  /login                        controllers.Application.tentaLogin()
 POST  /cadastro                     controllers.Application.cadastramento()
 #Pos-Login
-GET   /selCarona                    controllers.Application.selecionarAcao()
-POST  /selCarona                    controllers.Application.selecionadaAcao()
-GET   /espec                        controllers.Application.especifica(String)
-POST  /espec                        controllers.Application.especificado(String)
+GET   /selCarona                    controllers.Application.selecionarAcao(id:  Long)
+POST  /selCarona                    controllers.Application.selecionadaAcao(id: Long)
+GET   /espec                        controllers.Application.especifica(id: Long, String)
+POST  /espec                        controllers.Application.especificado(id: Long, String)
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)

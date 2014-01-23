@@ -18,6 +18,10 @@ public class User {
 	private String password;
 	
 	private boolean sessaoAtiva = false;
+	private List<Carona> caronas;
+	private Carona ultimaCarona;
+	private List<SolicitacaoCarona> solicitacoes;
+	private SolicitacaoCarona ultimaSolicitacao;
 	
 	public User(){
 		
@@ -25,6 +29,8 @@ public class User {
 	public User(Long id, String email, String password){
 		name = email; this.password = password;
 		this.id = id;
+		caronas = new ArrayList<Carona>();
+		solicitacoes = new ArrayList<SolicitacaoCarona>();
 	}
 	
 	public void iniciarSessao(){
@@ -33,6 +39,15 @@ public class User {
 	
 	public static void create(User user){
 	//	user.save();
+	}
+	
+	public void criarCarona(Carona nova){
+		caronas.add(nova);
+		ultimaCarona = nova;
+	}
+	public void criarSolicitacao(SolicitacaoCarona nova){
+		solicitacoes.add(nova);
+		ultimaSolicitacao = nova;
 	}
 	
 	public long getId(){
