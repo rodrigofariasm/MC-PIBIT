@@ -1,6 +1,10 @@
 package controllers;
 
 import java.sql.Connection;
+import java.sql.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+
 import javax.sql.DataSource;
 import play.db.*;
 import models.*;
@@ -73,18 +77,22 @@ public class Application extends Controller {
 		DynamicForm option = Form.form().bindFromRequest();
 		String selecao = option.get("typeAction");
 		System.out.println(selecao);
-		return redirect(routes.Application.especifica(selecao));
+		return redirect(routes.Application.especifica(id, selecao));
 	}
 
-	public static Result especifica(String selecao){
-		return ok(views.html.especificacao.render(selecao));
+	public static Result especifica(long id, String selecao){
+		return ok(views.html.especificacao.render(id, selecao));
 	}
 
-	public static Result especificado(String kind){
+	public static Result especificado(long id, String kind) throws Exception{
 		DynamicForm info = Form.form().bindFromRequest();
+		SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy kk:mm");
 		String bairro = info.get("Bairro");
 		String vagas = info.get("vagas");
-		return ok(views.html.especificacao.render(kind));
+		String day = info.get("day"), month = info.get("month"), hour = info.get("hour"), min = info.get("min");
+		java.util.Date date = (java.util.Date) format.parse(day +"/"+month+"/2014"+ " " + hour + ":" + min);
+	    sistemaL.criarCarona(id, bairro, "UFCG", date, vagas, "castanha@gmail.com");
+		return ok(views.html.especificacao.render(id, kind));
 
 	}
 

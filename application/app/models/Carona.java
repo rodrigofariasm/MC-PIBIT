@@ -10,18 +10,18 @@ import java.text.*;
 
 public class Carona {
 	 long ID;
-	 private String origem, destino, data, hora, vagas;
+	 private String origem, destino,  vagas;
+	 private java.util.Date data;
 	 private User motorista;
      private List<User> caronas;
      private String pontoDeEncontro;
      
-     public Carona(long ID, String origem, String destino, String data, String hora,
+     public Carona(long ID, String origem, String destino, java.util.Date data,
              String vagas, User motorista) throws Exception {
     	 this.ID = ID;
     	 this.origem = origem;
     	 this.destino = destino;
     	 this.data = data;
-    	 this.hora = hora;
     	 this.vagas = vagas;
     	 this.motorista = motorista;
     	 this.caronas = new ArrayList<User>();
@@ -43,21 +43,14 @@ public class Carona {
 		this.destino = destino;
 	}
 
-	public String getData() {
+	public java.util.Date getData() {
 		return data;
 	}
 
-	public void setData(String data) {
+	public void setData(java.util.Date data) {
 		this.data = data;
 	}
 
-	public String getHora() {
-		return hora;
-	}
-
-	public void setHora(String hora) {
-		this.hora = hora;
-	}
 
 	public String getVagas() {
 		return vagas;

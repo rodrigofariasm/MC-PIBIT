@@ -22,15 +22,6 @@ public class SistemaL {
 	public List<User> getUsers(){
 		return users;
 	}
-	
-	public User getUserPorEmail(String email)throws Exception{
-		for (User u : users) {
-			if(u.getName().equals(email)){
-				return u;
-			}
-		}
-		throw new Exception("Usuario não encontrado");
-	}
 
 	public String criaUsuario(String email, String password){
 		User cadastrado = new User(++IDuser, email, password);
@@ -63,10 +54,10 @@ public class SistemaL {
 		return false;
 	}
 	
-	public Carona criarCarona(long ID, String origem, String destino, String data, String hora,
+	public void criarCarona(long ID, String origem, String destino, java.util.Date data,
             String vagas, String email) throws Exception{
 		if(getUserPorEmail(email).isSessaoAtiva()){
-			return new Carona(ID, origem, destino, data, hora, vagas, getUserPorEmail(email));
+			caronas.add(new Carona(ID, origem, destino, data, vagas, getUserPorID(ID)));
 		}else{
 			throw new Exception("Realize o login");
 		}
@@ -78,6 +69,24 @@ public class SistemaL {
 		}else{
 			throw new Exception("Realize o login");
 		}
+	}
+	
+	public User getUserPorEmail(String email)throws Exception{
+		for (User u : users) {
+			if(u.getName().equals(email)){
+				return u;
+			}
+		}
+		throw new Exception("Usuario não encontrado");
+	}
+	
+	public User getUserPorID(long ID)throws Exception{
+		for (User u : users) {
+			if(u.getId() == ID){
+				return u;
+			}
+		}
+		throw new Exception("Usuario não encontrado");
 	}
 	
 }
