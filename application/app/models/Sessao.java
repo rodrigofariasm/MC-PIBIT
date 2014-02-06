@@ -34,14 +34,10 @@ public class Sessao extends Controller {
 		ID = iD;
 	}
 	
-	public Carona criarCarona(long ID, String origem, String destino, String data, String hora,
+	public Carona criarCarona(long ID, String origem, String destino, java.util.Date data, String hora,
             String vagas) throws Exception{
-		Carona carona = new Carona(ID, origem, destino, data, hora, vagas, user);
+		Carona carona = new Carona(ID, origem, destino, data, vagas, user);
 		return carona;
-	}
-	public SolicitacaoCarona solicitarCarona(String origem, String destino, String data, String hora,
-			 long ID){
-		return new SolicitacaoCarona(ID, origem, destino, data, hora, user);
 	}
 	
 	public static boolean isSessaoAtiva() {

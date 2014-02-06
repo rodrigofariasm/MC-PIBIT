@@ -12,7 +12,8 @@ public class SistemaL {
 
 	private static List<User> users;
 	private static List<Carona> caronas;
-	private static long IDuser = 0, IDcarona = 0;
+	private static List<SolicitacaoCarona>solicitacoes;
+	private static long IDuser = 0, IDcarona = 0, IDsolicitacao;
 	
 	public SistemaL(){
 		users = new ArrayList<User>();
@@ -54,24 +55,34 @@ public class SistemaL {
 		return false;
 	}
 	
-	public void criarCarona(long ID, String origem, String destino, java.util.Date data,
-            String vagas, String email) throws Exception{
-		if(getUserPorEmail(email).isSessaoAtiva()){
-			caronas.add(new Carona(ID, origem, destino, data, vagas, getUserPorID(ID)));
+	public void criarCarona(String origem, String destino, java.util.Date data,
+            String vagas, long userID) throws Exception{
+		if(getUserPorID(userID).isSessaoAtiva()){
+			caronas.add(new Carona(++IDcarona, origem, destino, data, vagas, getUserPorID(userID)));
 		}else{
 			throw new Exception("Realize o login");
 		}
 	}
-	public SolicitacaoCarona solicitarCarona(String origem, String destino, String data, String hora,
-			 long ID, String email) throws Exception{
-		if(getUserPorEmail(email).isSessaoAtiva()){
-			return new SolicitacaoCarona(ID, origem, destino, data, hora, getUserPorEmail(email));
+	public void solicitarCarona(String origem, String destino, java.util.Date data,
+			  long userID, String pontoEncontro) throws Exception{
+		if(getUserPorID(userID).isSessaoAtiva()){
+			solicitacoes.add( new SolicitacaoCarona(++IDsolicitacao, origem, destino, data,
+					getUserPorID(userID), pontoEncontro));
 		}else{
 			throw new Exception("Realize o login");
 		}
 	}
 	
-	public User getUserPorEmail(String email)throws Exception{
+	public String getEmailPorID(long ID)throws Exception{
+		for (User u : users) {
+			if(u.getId() == ID){
+				return u.getName();
+			}
+		}
+		throw new Exception("Usuario não encontrado");
+	}
+	
+	public User getUserPorEmail(String email) throws Exception{
 		for (User u : users) {
 			if(u.getName().equals(email)){
 				return u;

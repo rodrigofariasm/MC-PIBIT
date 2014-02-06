@@ -88,12 +88,25 @@ public class Application extends Controller {
 		DynamicForm info = Form.form().bindFromRequest();
 		SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy kk:mm");
 		String bairro = info.get("Bairro");
-		String vagas = info.get("vagas");
 		String day = info.get("day"), month = info.get("month"), hour = info.get("hour"), min = info.get("min");
 		java.util.Date date = (java.util.Date) format.parse(day +"/"+month+"/2014"+ " " + hour + ":" + min);
-	    sistemaL.criarCarona(id, bairro, "UFCG", date, vagas, "castanha@gmail.com");
-		return ok(views.html.especificacao.render(id, kind));
-
+		if(kind == "criarCarona"){
+			String vagas = info.get("vagas");
+			sistemaL.criarCarona(bairro, "UFCG", date, vagas, id);
+			return ok(views.html.especificacao.render(id, kind));
+		}else if(kind == "solicitarCarona"){
+			String pontoEncontro = info.get("point");
+			sistemaL.solicitarCarona(bairro, "UFCG", date, id, pontoEncontro);
+			return ok(views.html.especificacao.render(id, kind));
+		}
+			return TODO;
+		
 	}
+	
+	public static Result viewCarona(long id, String kind){
+		return TODO;
+		
+	}
+	
 
 }

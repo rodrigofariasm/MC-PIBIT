@@ -3,19 +3,20 @@ package models;
 import java.util.List;
 
 public class SolicitacaoCarona {
-	 private String origem, destino, data, hora;
+	 private String origem, destino;
+	 private java.util.Date data;
 	 private long ID;
      private String pontoDeEncontro;
      private User user;
 	
-     public SolicitacaoCarona(long ID, String origem, String destino, String data, String hora,
-    		 User solicitador){
+     public SolicitacaoCarona(long ID, String origem, String destino, java.util.Date data,
+    		 User solicitador, String ponto){
     	 this.origem = origem;
     	 this.destino = destino;
     	 this.data = data;
-    	 this.hora = hora;
     	 this.user = solicitador;
     	 this.ID = ID;
+    	 this.pontoDeEncontro = ponto;
      }
 
 	public String getOrigem() {
@@ -34,21 +35,15 @@ public class SolicitacaoCarona {
 		this.destino = destino;
 	}
 
-	public String getData() {
+	public java.util.Date getData() {
 		return data;
 	}
 
-	public void setData(String data) {
+	public void setData(java.util.Date data) {
 		this.data = data;
 	}
 
-	public String getHora() {
-		return hora;
-	}
 
-	public void setHora(String hora) {
-		this.hora = hora;
-	}
 
 	public long getID() {
 		return ID;
