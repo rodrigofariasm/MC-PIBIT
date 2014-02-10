@@ -10,11 +10,11 @@ import java.text.*;
 
 public class Carona {
 	 long ID;
-	 private String origem, destino,  vagas;
-	 private java.util.Date data;
-	 private User motorista;
-     private List<User> caronas;
-     private String pontoDeEncontro;
+	 public String origem, destino,  vagas;
+	 public java.util.Date data;
+	 public User motorista;
+     public List<User> caronas;
+     public String pontoDeEncontro;
      
      public Carona(long ID, String origem, String destino, java.util.Date data,
              String vagas, User motorista) throws Exception {
@@ -64,16 +64,8 @@ public class Carona {
 		return ID;
 	}
 
-	public void setID(long iD) {
-		ID = iD;
-	}
-
 	public User getMotorista() {
 		return motorista;
-	}
-
-	public void setMotorista(User motorista) {
-		this.motorista = motorista;
 	}
 
 	public List<User> getCaronas() {

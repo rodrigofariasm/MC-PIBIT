@@ -100,4 +100,12 @@ public class SistemaL {
 		throw new Exception("Usuario não encontrado");
 	}
 	
+	public List<Carona> getCaronas(){
+		return caronas;
+	}
+
+	public List<SolicitacaoCarona> getSolicitacoes(){
+		return solicitacoes;
+	}
+	
 }

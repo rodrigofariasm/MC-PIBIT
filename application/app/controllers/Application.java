@@ -76,7 +76,6 @@ public class Application extends Controller {
 	public static Result selecionadaAcao(long id){
 		DynamicForm option = Form.form().bindFromRequest();
 		String selecao = option.get("typeAction");
-		System.out.println(selecao);
 		return redirect(routes.Application.especifica(id, selecao));
 	}
 
@@ -86,25 +85,25 @@ public class Application extends Controller {
 
 	public static Result especificado(long id, String kind) throws Exception{
 		DynamicForm info = Form.form().bindFromRequest();
-		SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy kk:mm");
 		String bairro = info.get("Bairro");
-		String day = info.get("day"), month = info.get("month"), hour = info.get("hour"), min = info.get("min");
+		String hour = info.get("hour"), min = info.get("min");
 		java.util.Date date = (java.util.Date) format.parse(day +"/"+month+"/2014"+ " " + hour + ":" + min);
 		if(kind == "criarCarona"){
 			String vagas = info.get("vagas");
 			sistemaL.criarCarona(bairro, "UFCG", date, vagas, id);
-			return ok(views.html.especificacao.render(id, kind));
+			return redirect(routes.Application.viewCarona(id, kind));
 		}else if(kind == "solicitarCarona"){
 			String pontoEncontro = info.get("point");
 			sistemaL.solicitarCarona(bairro, "UFCG", date, id, pontoEncontro);
-			return ok(views.html.especificacao.render(id, kind));
+			return redirect(routes.Application.viewCarona(id, kind));
+		}else{
+			return redirect(routes.Application.viewCarona(id, kind));
 		}
-			return TODO;
 		
 	}
 	
 	public static Result viewCarona(long id, String kind){
-		return TODO;
+		return ok(views.html.viewCaronas.render(id, sistemaL.getCaronas()));
 		
 	}
 	

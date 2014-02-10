@@ -18,10 +18,8 @@
    	    	<option value="3">3</option>
    	     	<option value="4">4</option>
         	</select></ul>
-			<li><ul>Horario de saída: Dia-Mes-Hora-Min<input type="text" name = "day" MAXLENGTH = "2" size="2" required="true">
-				<input type="text" name="month" MAXLENGTH="2" size="2" required="true">
-				<input type="text" name="hour" MAXLENGTH="2" size="2" required="true">
-				<input type="text" name="min" MAXLENGTH="2" size="2" required="true"></ul></li>
+			<li><ul>Horario hora-min<input type="text" name = "hour" MAXLENGTH = "2" size="2" required="true">
+				<input type="text" name="min" MAXLENGTH="2" size="2" required="true">
 			<ul><input type="submit" value="Criar"></ul>
          }
 	 }
@@ -30,11 +28,13 @@
     	   	<br>
     	   	<ul>Bairro:  <input  type = "text" name="bairro", required="true"></ul>
 			<ul>Ponto de encontro:  <input  type = "text" name="point"></ul>
-			<li><ul>Horario de saída: Dia-Mes-Hora-Min<input type="text" name = "day" MAXLENGTH = "2" size="2" required="true">
-				<input type="text" name="month" MAXLENGTH="2" size="2" required="true">
-				<input type="text" name="hour" MAXLENGTH="2" size="2" required="true">
+			<li><ul>Horario: Hora-Min<input type="text" name = "hour" MAXLENGTH = "2" size="2" required="true">
 				<input type="text" name="min" MAXLENGTH="2" size="2" required="true"></ul></li>
 			<ul><input type="submit" value="Solicitar"></ul>
          }
+	 }
+	 
+	 @form(routes.Application.selecionarAcao(id)){
+	 	<ul><input type = "submit" value="Voltar"</ul>
 	 }
 }
