@@ -69,6 +69,12 @@ public class Application extends Controller {
 		}
 
 	}
+	
+	public static Result logoff(long id)throws Exception{
+		sistemaL.logoff(id);
+		return redirect(routes.Application.login());
+	}
+	
 	public static Result selecionarAcao(long id){
 		return ok(views.html.selCaronas.render(id));
 	}
@@ -86,15 +92,16 @@ public class Application extends Controller {
 	public static Result especificado(long id, String kind) throws Exception{
 		DynamicForm info = Form.form().bindFromRequest();
 		String bairro = info.get("Bairro");
-		String hour = info.get("hour"), min = info.get("min");
-		java.util.Date date = (java.util.Date) format.parse(day +"/"+month+"/2014"+ " " + hour + ":" + min);
+		int hour = Integer.valueOf(info.get("hour")), min = Integer.valueOf(info.get("min"));
+		
+				
 		if(kind == "criarCarona"){
 			String vagas = info.get("vagas");
-			sistemaL.criarCarona(bairro, "UFCG", date, vagas, id);
+			sistemaL.criarCarona(bairro, "UFCG", hour, min, vagas, id);
 			return redirect(routes.Application.viewCarona(id, kind));
 		}else if(kind == "solicitarCarona"){
 			String pontoEncontro = info.get("point");
-			sistemaL.solicitarCarona(bairro, "UFCG", date, id, pontoEncontro);
+			sistemaL.solicitarCarona(bairro, "UFCG", hour, min, id, pontoEncontro);
 			return redirect(routes.Application.viewCarona(id, kind));
 		}else{
 			return redirect(routes.Application.viewCarona(id, kind));

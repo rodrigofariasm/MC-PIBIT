@@ -22,7 +22,7 @@ private SistemaL sistema;
 	
 	@Test
 	public void deveCriarCarona() throws Exception {
-		sistema.criarCarona("Centro", "UFCG", new java.util.Date(2014, 02, 9, 15, 30), "4", 1);
+		sistema.criarCarona("Centro", "UFCG", 10, 30, "4", 1);
 		assertEquals(1, sistema.getCaronas().size());
 		assertEquals(sistema.getCaronas().get(0).getDestino(), "UFCG");
 		assertEquals(sistema.getCaronas().get(0).getData().getDate(), 9);

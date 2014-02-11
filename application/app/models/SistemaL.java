@@ -6,6 +6,8 @@ import play.db.ebean.*;
 import play.db.ebean.Model.Finder;
 import play.data.format.*;
 import play.data.validation.*;
+
+import java.sql.Date;
 import java.text.*;
 
 public class SistemaL {
@@ -44,6 +46,10 @@ public class SistemaL {
 			throw new Exception("Login Inválido");
 		}
 	}
+	
+	public void logoff(long id) throws Exception{
+		getUserPorID(id).encerraSessao();
+	}
 
 	public boolean autenticaLogin(User u) throws Exception{
 		if (users.contains(u)){
@@ -55,16 +61,26 @@ public class SistemaL {
 		return false;
 	}
 	
-	public void criarCarona(String origem, String destino, java.util.Date data,
+	public void criarCarona(String origem, String destino, int hora, int min,
             String vagas, long userID) throws Exception{
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTimeInMillis(System.currentTimeMillis());
+		calendar.add(Calendar.HOUR_OF_DAY, 24);
+		java.util.Date data = calendar.getTime();
+		System.out.println(data.getDay() + "/" + data.getMonth());
 		if(getUserPorID(userID).isSessaoAtiva()){
 			caronas.add(new Carona(++IDcarona, origem, destino, data, vagas, getUserPorID(userID)));
 		}else{
 			throw new Exception("Realize o login");
 		}
 	}
-	public void solicitarCarona(String origem, String destino, java.util.Date data,
+	public void solicitarCarona(String origem, String destino, int hora, int min,
 			  long userID, String pontoEncontro) throws Exception{
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTimeInMillis(System.currentTimeMillis());
+		calendar.add(Calendar.HOUR_OF_DAY, 24);
+		java.util.Date data = calendar.getTime();
+		System.out.println(data.getDay() + "/" + data.getMonth());
 		if(getUserPorID(userID).isSessaoAtiva()){
 			solicitacoes.add( new SolicitacaoCarona(++IDsolicitacao, origem, destino, data,
 					getUserPorID(userID), pontoEncontro));

@@ -32,5 +32,12 @@ public class testCadastroLogin {
 		sistema.iniciarSessao(sistema.getUserPorEmail("abacate@gmail.com"));
 		assertTrue(sistema.getUserPorEmail("abacate@gmail.com").isSessaoAtiva());
 	}
+	
+	@Test
+	public void aoFazerLogoffSessaoDeveSerEncerrada() throws Exception{
+		sistema.iniciarSessao(sistema.getUserPorEmail("abacate@gmail.com"));
+		sistema.logoff(sistema.getUserPorEmail("abacate@gmail.com").getId());
+		assertFalse(sistema.getUserPorEmail("abacate@gmail.com").isSessaoAtiva());
+	}
 
 }

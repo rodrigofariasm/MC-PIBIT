@@ -88,8 +88,11 @@ public class User {
 	public boolean isSessaoAtiva() {
 		return sessaoAtiva;
 	}
-	public void setSessaoAtiva(boolean sessaoAtiva) {
-		this.sessaoAtiva = sessaoAtiva;
+	public void abreSessao(){
+		this.sessaoAtiva = true;
+	}
+	public void encerraSessao() {
+		this.sessaoAtiva = false;
 	}
 	public String toString(){
 		return "" + name;
