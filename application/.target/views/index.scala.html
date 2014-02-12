@@ -1,4 +1,4 @@
-@(userForm : Form[User])
+@(userForm : Form[Usuario])
 
 @import helper._
 
@@ -12,7 +12,7 @@
     
    	@form(routes.Application.tentaLogin()) {
         
-        <li>@inputText(userForm("name"), '_label -> "E-mail:"	) </li>
+        <li>@inputText(userForm("email"), '_label -> "E-mail:"	) </li>
         <li>@inputPassword(userForm("password"), '_label -> "Senha:")</li>
         <input type="submit" value="Create">
         

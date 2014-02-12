@@ -12,24 +12,28 @@ import java.text.*;
 
 public class SistemaL {
 
-	private static List<User> users;
+	private static List<Usuario> users;
 	private static List<Carona> caronas;
 	private static List<SolicitacaoCarona>solicitacoes;
 	private static long IDuser = 0, IDcarona = 0, IDsolicitacao;
 	
+	// Codificador de Senha
+	BCrypt crip = new BCrypt();
+	
 	public SistemaL(){
-		users = new ArrayList<User>();
+		users = new ArrayList<Usuario>();
 		caronas = new ArrayList<Carona>();
 	}
 
-	public List<User> getUsers(){
+	public List<Usuario> getUsers(){
 		return users;
 	}
 
 	public String criaUsuario(String email, String password){
-		User cadastrado = new User(++IDuser, email, password);
-		for (User u : users) {
-			if(u.getName().equals(cadastrado.getName())){
+		String senha = crip.hashpw(password, crip.gensalt());
+		Usuario cadastrado = new Usuario(++IDuser, email, senha);
+		for (Usuario u : users) {
+			if(u.getEmail().equals(cadastrado.getEmail())){
 				return "email já cadastrado";
 			}
 		}
@@ -37,9 +41,9 @@ public class SistemaL {
 		return "Cadastrado com sucesso";
 	}
 
-	public long iniciarSessao(User u) throws Exception{
+	public long iniciarSessao(Usuario u) throws Exception{
 		if(autenticaLogin(u)){
-			User logado = getUserPorEmail(u.getName());
+			Usuario logado = getUserPorEmail(u.getEmail());
 			logado.iniciarSessao();
 			return logado.getId();
 		}else{
@@ -51,10 +55,11 @@ public class SistemaL {
 		getUserPorID(id).encerraSessao();
 	}
 
-	public boolean autenticaLogin(User u) throws Exception{
+	public boolean autenticaLogin(Usuario u) throws Exception{
+		String senha = u.getPassword();
 		if (users.contains(u)){
-			User log = getUserPorEmail(u.getName());
-			if(log.getPassword().equals(u.getPassword())){
+			Usuario log = getUserPorEmail(u.getEmail());
+			if(crip.checkpw(senha, log.getPassword())){
 				return true;
 			}
 		}
@@ -90,25 +95,25 @@ public class SistemaL {
 	}
 	
 	public String getEmailPorID(long ID)throws Exception{
-		for (User u : users) {
+		for (Usuario u : users) {
 			if(u.getId() == ID){
-				return u.getName();
+				return u.getEmail();
 			}
 		}
 		throw new Exception("Usuario não encontrado");
 	}
 	
-	public User getUserPorEmail(String email) throws Exception{
-		for (User u : users) {
-			if(u.getName().equals(email)){
+	public Usuario getUserPorEmail(String email) throws Exception{
+		for (Usuario u : users) {
+			if(u.getEmail().equals(email)){
 				return u;
 			}
 		}
 		throw new Exception("Usuario não encontrado");
 	}
 	
-	public User getUserPorID(long ID)throws Exception{
-		for (User u : users) {
+	public Usuario getUserPorID(long ID)throws Exception{
+		for (Usuario u : users) {
 			if(u.getId() == ID){
 				return u;
 			}

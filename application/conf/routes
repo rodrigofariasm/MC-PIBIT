@@ -17,7 +17,7 @@ GET   /selCarona                    controllers.Application.selecionarAcao(id:  
 POST  /selCarona                    controllers.Application.selecionadaAcao(id: Long)
 GET   /espec                        controllers.Application.especifica(id: Long, kind: String)
 POST  /espec                        controllers.Application.especificado(id: Long, kind: String)
-GET   /viewCarona                   controllers.Application.viewCarona(id: Long, option: String)
+GET   /mostrarCaronas               controllers.Application.mostrarCaronas(id: Long, option: String)
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)

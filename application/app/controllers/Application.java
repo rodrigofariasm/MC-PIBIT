@@ -16,7 +16,7 @@ import java.util.Vector;;
 public class Application extends Controller {
 	Connection connection = DB.getConnection();
 	DataSource ds = DB.getDataSource();
-	static Form<User> userForm = Form.form(User.class);
+	static Form<Usuario> userForm = Form.form(Usuario.class);
 	private static SistemaL sistemaL = new SistemaL();
 
 	public static Result index() {
@@ -28,18 +28,18 @@ public class Application extends Controller {
 	}
 
 	public static Result tentaLogin() throws Exception{
-		Form<User> filledForm = userForm.bindFromRequest();
-		
+		Form<Usuario> filledForm = userForm.bindFromRequest();
 		if(filledForm.hasErrors()) {
 			return badRequest(
 					views.html.index.render(filledForm)
 					);
 		} else {
-			if(sistemaL.autenticaLogin(filledForm.get())){
+			try{
 				long id = sistemaL.iniciarSessao(filledForm.get());
-				return selecionarAcao(id);
+				return redirect(routes.Application.selecionarAcao(id));
+			}catch(Exception e){
+				return redirect(routes.Application.login());
 			}
-			return redirect(routes.Application.login());
 		}
 	}
 
@@ -98,18 +98,18 @@ public class Application extends Controller {
 		if(kind == "criarCarona"){
 			String vagas = info.get("vagas");
 			sistemaL.criarCarona(bairro, "UFCG", hour, min, vagas, id);
-			return redirect(routes.Application.viewCarona(id, kind));
+			return redirect(routes.Application.mostrarCaronas(id, kind));
 		}else if(kind == "solicitarCarona"){
 			String pontoEncontro = info.get("point");
 			sistemaL.solicitarCarona(bairro, "UFCG", hour, min, id, pontoEncontro);
-			return redirect(routes.Application.viewCarona(id, kind));
+			return redirect(routes.Application.mostrarCaronas(id, kind));
 		}else{
-			return redirect(routes.Application.viewCarona(id, kind));
+			return redirect(routes.Application.mostrarCaronas(id, kind));
 		}
 		
 	}
 	
-	public static Result viewCarona(long id, String kind){
+	public static Result mostrarCaronas(long id, String kind){
 		return ok(views.html.viewCaronas.render(id, sistemaL.getCaronas()));
 		
 	}

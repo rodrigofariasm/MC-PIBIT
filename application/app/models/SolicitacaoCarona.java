@@ -6,10 +6,10 @@ public class SolicitacaoCarona {
 	 private java.util.Date data;
 	 private long ID;
      private String pontoDeEncontro;
-     private User user;
+     private Usuario user;
 	
      public SolicitacaoCarona(long ID, String origem, String destino, java.util.Date data,
-    		 User solicitador, String ponto){
+    		 Usuario solicitador, String ponto){
     	 this.origem = origem;
     	 this.destino = destino;
     	 this.data = data;
@@ -60,11 +60,11 @@ public class SolicitacaoCarona {
 		this.pontoDeEncontro = pontoDeEncontro;
 	}
 
-	public User getUser() {
+	public Usuario getUser() {
 		return user;
 	}
 
-	public void setUser(User user) {
+	public void setUser(Usuario user) {
 		this.user = user;
 	}
 }

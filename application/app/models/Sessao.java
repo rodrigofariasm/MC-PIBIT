@@ -14,17 +14,17 @@ import java.util.Vector;
 public class Sessao extends Controller {
 
 	static boolean sessaoAtiva;
-	static private User user;
+	static private Usuario user;
 	static private long ID;
-	public Sessao(long ID, User user){
+	public Sessao(long ID, Usuario user){
 		this.user = user;
 		this.ID = ID;
 		this.sessaoAtiva = true;
 	}
-	public static User getUser() {
+	public static Usuario getUser() {
 		return user;
 	}
-	public static void setUser(User user) {
+	public static void setUser(Usuario user) {
 		Sessao.user = user;
 	}
 	public static long getID() {

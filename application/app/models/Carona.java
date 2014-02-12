@@ -12,19 +12,19 @@ public class Carona {
 	 long ID;
 	 public String origem, destino,  vagas;
 	 public java.util.Date data;
-	 public User motorista;
-     public List<User> caronas;
+	 public Usuario motorista;
+     public List<Usuario> caronas;
      public String pontoDeEncontro;
      
      public Carona(long ID, String origem, String destino, java.util.Date data,
-             String vagas, User motorista) throws Exception {
+             String vagas, Usuario motorista) throws Exception {
     	 this.ID = ID;
     	 this.origem = origem;
     	 this.destino = destino;
     	 this.data = data;
     	 this.vagas = vagas;
     	 this.motorista = motorista;
-    	 this.caronas = new ArrayList<User>();
+    	 this.caronas = new ArrayList<Usuario>();
      }
      
      public String getOrigem() {
@@ -64,15 +64,15 @@ public class Carona {
 		return ID;
 	}
 
-	public User getMotorista() {
+	public Usuario getMotorista() {
 		return motorista;
 	}
 
-	public List<User> getCaronas() {
+	public List<Usuario> getCaronas() {
 		return caronas;
 	}
 
-	public void setCaronas(List<User> caronas) {
+	public void setCaronas(List<Usuario> caronas) {
 		this.caronas = caronas;
 	}
 

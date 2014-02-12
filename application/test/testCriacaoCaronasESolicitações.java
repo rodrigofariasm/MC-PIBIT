@@ -1,7 +1,7 @@
 import static org.junit.Assert.*;
 
 import models.SistemaL;
-import models.User;
+import models.Usuario;
 
 import org.junit.Before;
 import org.junit.Test;
