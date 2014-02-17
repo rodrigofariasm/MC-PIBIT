@@ -2,20 +2,18 @@ package controllers;
 
 import java.sql.Connection;
 import java.sql.Date;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 
 import javax.sql.DataSource;
 import play.db.*;
 import models.*;
 import play.mvc.*;
 import play.data.*;
-import views.html.*;
-import java.util.Vector;;
 
 public class Application extends Controller {
 	Connection connection = DB.getConnection();
 	DataSource ds = DB.getDataSource();
+	
+	
 	static Form<Usuario> userForm = Form.form(Usuario.class);
 	private static SistemaL sistemaL = new SistemaL();
 
@@ -58,7 +56,7 @@ public class Application extends Controller {
 					);
 		} else {
 			if(password.equals(rePassword)){
-				String st = sistemaL.criaUsuario(email, rePassword);
+				String st = sistemaL.criaUsuario(email, password);
 				if(st.equals("email já cadastrado")){
 					return ok(views.html.cadastro.render());
 				}
@@ -93,8 +91,6 @@ public class Application extends Controller {
 		DynamicForm info = Form.form().bindFromRequest();
 		String bairro = info.get("Bairro");
 		int hour = Integer.valueOf(info.get("hour")), min = Integer.valueOf(info.get("min"));
-		
-				
 		if(kind == "criarCarona"){
 			String vagas = info.get("vagas");
 			sistemaL.criarCarona(bairro, "UFCG", hour, min, vagas, id);
@@ -115,4 +111,5 @@ public class Application extends Controller {
 	}
 	
 
+	
 }

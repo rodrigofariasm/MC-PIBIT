@@ -1,10 +1,11 @@
 import static org.junit.Assert.*;
 
-import models.SistemaL;
 import models.Usuario;
 
 import org.junit.Before;
 import org.junit.Test;
+
+import controllers.SistemaL;
 
 
 public class testCriacaoCaronasESolicitações {

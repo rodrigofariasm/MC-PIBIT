@@ -3,23 +3,30 @@ package models;
 import java.util.*;
 import play.data.format.*;
 import javax.persistence.*;
+import play.db.*;
 import play.db.ebean.*;
+import play.db.ebean.Model.Finder;
+import play.data.format.*;
 import play.data.validation.*;
+import play.data.validation.Constraints.*;
 
 @Entity
-public class Usuario {
+@Table(name="USUARIO")
+public class Usuario extends Model{
 	
+	@Id
 	private Long id;
 	
-	@Constraints.Email
+	@Email
+	@Column
 	private String email;
 	
-	@Constraints.Required
+	@Required
+	@Column
 	private String password;
 	
+	@Column
 	private boolean sessaoAtiva = false;
-	private List<Carona> caronas;
-	private List<SolicitacaoCarona> solicitacoes;
 	
 	public Usuario(){
 		
@@ -27,24 +34,29 @@ public class Usuario {
 	public Usuario(Long id, String email, String password){
 		this.email = email; this.password = password;
 		this.id = id;
-		caronas = new ArrayList<Carona>();
-		solicitacoes = new ArrayList<SolicitacaoCarona>();
 	}
 	
-	public void iniciarSessao(){
-		sessaoAtiva = true;
-	}
 	
-	public static void create(Usuario user){
-	//	user.save();
-	}
 	
-	public void criarCarona(Carona nova){
-		caronas.add(nova);
+	// 
+	public static Finder<Long, Usuario> find = new Finder(Long.class, Usuario.class);
+	
+	
+	public static List<Usuario> all() {
+		 return Usuario.find.all();
 	}
-	public void criarSolicitacao(SolicitacaoCarona nova){
-		solicitacoes.add(nova);
+
+	public static void create(Usuario usuario) {
+		 usuario.save();
+	 }
+	 
+	public static Usuario findById(long id){
+		return Usuario.find.byId(id);
+		
 	}
+	 public static void delete(Long id) {
+		 find.ref(id).delete();
+	 }
 	
 	public long getId(){
 		return this.id;
@@ -84,11 +96,11 @@ public class Usuario {
 	public boolean isSessaoAtiva() {
 		return sessaoAtiva;
 	}
-	public void abreSessao(){
-		this.sessaoAtiva = true;
-	}
 	public void encerraSessao() {
 		this.sessaoAtiva = false;
+	}
+	public void iniciarSessao(){
+		this.sessaoAtiva = true;
 	}
 	public String toString(){
 		return "" + email;

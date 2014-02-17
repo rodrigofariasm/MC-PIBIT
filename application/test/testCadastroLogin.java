@@ -4,6 +4,8 @@ import models.*;
 import org.junit.Test;
 import org.junit.Before;
 
+import controllers.SistemaL;
+
 public class testCadastroLogin {
 
 	private SistemaL sistema;

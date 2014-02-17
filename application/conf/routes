@@ -13,6 +13,7 @@ POST  /cadastro                     controllers.Application.cadastramento()
 POST  /logoff                       controllers.Application.logoff(id: Long)
 
 #Pos-Login
+
 GET   /selCarona                    controllers.Application.selecionarAcao(id:  Long)
 POST  /selCarona                    controllers.Application.selecionadaAcao(id: Long)
 GET   /espec                        controllers.Application.especifica(id: Long, kind: String)
