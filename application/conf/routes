@@ -10,15 +10,15 @@ GET   /login						controllers.Application.login()
 GET   /cadastro                     controllers.Application.cadastro()
 POST  /login                        controllers.Application.tentaLogin()
 POST  /cadastro                     controllers.Application.cadastramento()
-POST  /logoff                       controllers.Application.logoff(id: Long)
+#POST  /selCarona                    controllers.Application.logoff(id: Long)
 
 #Pos-Login
 
-GET   /selCarona                    controllers.Application.selecionarAcao(id:  Long)
-POST  /selCarona                    controllers.Application.selecionadaAcao(id: Long)
-GET   /espec                        controllers.Application.especifica(id: Long, kind: String)
-POST  /espec                        controllers.Application.especificado(id: Long, kind: String)
-GET   /mostrarCaronas               controllers.Application.mostrarCaronas(id: Long, option: String)
+#GET   /selCarona                    controllers.Application.selecionarAcao(id:  Long)
+#POST  /selCarona                    controllers.Application.selecionadaAcao(id: Long)
+#GET   /espec                        controllers.Application.especifica(id: Long, kind: String)
+#POST  /espec                        controllers.Application.especificado(id: Long, kind: String)
+#GET   /mostrarCaronas               controllers.Application.mostrarCaronas(id: Long, option: String)
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)

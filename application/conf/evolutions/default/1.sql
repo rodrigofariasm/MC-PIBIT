@@ -3,9 +3,12 @@
 
 # --- !Ups
 
-create table user (
-  name                      varchar(255),
-  password                  varchar(255))
+create table usuario (
+  id                        bigint auto_increment not null,
+  email                     varchar(255),
+  password                  varchar(255),
+  sessao_ativa              boolean,
+  constraint pk_usuario primary key (id))
 ;
 
 
@@ -15,7 +18,7 @@ create table user (
 
 SET REFERENTIAL_INTEGRITY FALSE;
 
-drop table if exists user;
+drop table if exists usuario;
 
 SET REFERENTIAL_INTEGRITY TRUE;
 

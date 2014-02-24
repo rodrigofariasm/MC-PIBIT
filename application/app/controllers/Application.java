@@ -8,6 +8,9 @@ import play.db.*;
 import models.*;
 import play.mvc.*;
 import play.data.*;
+import play.data.Form.*;
+import play.data.validation.Constraints.Min;
+import play.data.validation.Constraints.Required;
 
 public class Application extends Controller {
 	Connection connection = DB.getConnection();
@@ -42,28 +45,17 @@ public class Application extends Controller {
 	}
 
 	public static Result cadastro() {
-		return ok(views.html.cadastro.render());
+		return ok(views.html.cadastro.render(Form.form(Cadastro.class)));
 	}
 
 	public static Result cadastramento(){
-		DynamicForm newUser = Form.form().bindFromRequest();
-		String email = newUser.get("name");
-		String password = newUser.get("password");
-		String rePassword = newUser.get("rePassword");
-		if(newUser.hasErrors()) {
+		Form<Cadastro> cadastroForm = Form.form(Cadastro.class).bindFromRequest();
+		if(cadastroForm.hasErrors()) {
 			return badRequest(
-					views.html.cadastro.render()
+					views.html.cadastro.render(Form.form(Cadastro.class))
 					);
 		} else {
-			if(password.equals(rePassword)){
-				String st = sistemaL.criaUsuario(email, password);
-				if(st.equals("email já cadastrado")){
-					return ok(views.html.cadastro.render());
-				}
 				return ok(views.html.index.render(userForm));
-			}else{
-				return ok(views.html.cadastro.render());
-			}
 		}
 
 	}
@@ -110,6 +102,33 @@ public class Application extends Controller {
 		
 	}
 	
-
+	public static class Cadastro{
+		@Required
+	    public String email;
+		@Required
+		@Min(6)
+	    public String password;
+		@Min(6)
+	    public String repassword;
+		public String validate() {
+		    if (!password.equals(repassword)) {
+		      return "As senhas estão diferentes";
+		    }
+		    return null;
+		}
+	}
+	
+	public static class Login{
+		public String email;
+		
+		public String password;
+		
+		public String validate() {
+		    if (Usuario.authenticate(email, password) == null) {
+		      return "Invalid user or password";
+		    }
+		    return null;
+		}
+	}
 	
 }

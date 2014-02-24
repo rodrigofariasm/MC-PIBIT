@@ -32,19 +32,14 @@ public class SistemaL {
 
 	public String criaUsuario(String email, String password){
 		String senha = crip.hashpw(password, crip.gensalt());
-		Usuario cadastrado = new Usuario(++IDuser, email, senha);
-		for (Usuario u : users) {
-			if(u.getEmail().equals(cadastrado.getEmail())){
-				return "email já cadastrado";
-			}
-		}
+		Usuario cadastrado = new Usuario(email, senha);
 		Usuario.create(cadastrado);
 		return "Cadastrado com sucesso";
 	}
 
 	public long iniciarSessao(Usuario u) throws Exception{
 		if(autenticaLogin(u)){
-			Usuario logado = getUserPorEmail(u.getEmail());
+			Usuario logado = getUserPorEmail(u.email);
 			logado.iniciarSessao();
 			return logado.getId();
 		}else{
@@ -57,10 +52,10 @@ public class SistemaL {
 	}
 
 	public boolean autenticaLogin(Usuario u) throws Exception{
-		String senha = u.getPassword();
+		String senha = u.password;
 		if (users.contains(u)){
-			Usuario log = getUserPorEmail(u.getEmail());
-			if(crip.checkpw(senha, log.getPassword())){
+			Usuario log = getUserPorEmail(u.email);
+			if(crip.checkpw(senha, log.password)){
 				return true;
 			}
 		}
@@ -98,7 +93,7 @@ public class SistemaL {
 	public String getEmailPorID(long ID)throws Exception{
 		for (Usuario u : users) {
 			if(u.getId() == ID){
-				return u.getEmail();
+				return u.email;
 			}
 		}
 		throw new Exception("Usuario não encontrado");
@@ -106,7 +101,7 @@ public class SistemaL {
 	
 	public Usuario getUserPorEmail(String email) throws Exception{
 		for (Usuario u : users) {
-			if(u.getEmail().equals(email)){
+			if(u.email.equals(email)){
 				return u;
 			}
 		}
