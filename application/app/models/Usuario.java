@@ -4,7 +4,7 @@ import java.util.*;
 import javax.persistence.*;
 import play.db.ebean.*;
 import play.db.ebean.Model;
-
+import utilidades.BCrypt;
 @Entity
 public class Usuario extends Model{
 	
@@ -35,14 +35,25 @@ public class Usuario extends Model{
 		 return Usuario.find.all();
 	}
 
-	public static void create(Usuario usuario) {
-		 usuario.save();
+	public static void create(Usuario usuario) throws Exception{
+		if(find.where().eq("email", usuario.email).findUnique() == null){
+			BCrypt crip = new BCrypt();
+			String senha = crip.hashpw(usuario.password, crip.gensalt());
+			usuario.password = senha;
+			usuario.save();
+		}else throw new Exception("Tente outro e-mail");
 	 }
 	
-	public static Usuario authenticate(String email, String password) {
-        return find.where().eq("email", email)
-            .eq("password", password).findUnique();
-    }
+	public static Usuario authenticate(String email, String password) throws Exception {
+		BCrypt crip = new BCrypt();
+        Usuario x = find.where().eq("email", email).findUnique();
+		if(crip.checkpw(password, x.password)) return x;
+		else{
+			throw new Exception("Senhas não conferem");
+		}
+		
+
+	}
 	
 	
 	

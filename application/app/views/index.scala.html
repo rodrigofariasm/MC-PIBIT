@@ -1,24 +1,29 @@
-@(userForm : Form[Usuario])
+@(form: Form[Application.Login])
 
-@import helper._
+<html>
+    <head>
+        <title>Caronas Inteligentes</title>
+        <link rel="shortcut icon" type="image/png" href="@routes.Assets.at("images/favicon.png")">
+        <link rel="stylesheet" type="text/css" media="screen" href="@routes.Assets.at("stylesheets/login.css")">
+    </head>
+    <body>
+        <header>
+            <a href="@routes.Application.index" id="logo"><span>Caronas </span>Inteligentes</a>
+        </header>
+    
+    </body>
+</html>
 
-@main("Carona CG") {
-    
-    
-    <ul><h2>
-    "Carona CG"
-    </ul></h2>
-    
-    
-   	@form(routes.Application.tentaLogin()) {
-        
-        <h4><li>@inputText(userForm("email"), '_label -> "E-mail:"	) </li></h4>
-        <h4><li>@inputPassword(userForm("password"), '_label -> "Senha:")</li></h4>
-        <input type="submit" value="Create">
-        
-    }
-    
-    <ul> Ainda não é cadastrado? <a href="http:/cadastro">Cadastre-se aqui!</a>
-    </ul>
-    
+@helper.form(routes.Application.efetuaLogin) {
+   <h1>Sign in</h1>
+
+   <p>
+       <input type="email" name="email" placeholder="Email" value="@form("email").value">
+   </p>
+   <p>
+       <input type="password" name="password" placeholder="Senha">
+   </p>
+   <p>
+       <button type="submit">Login</button>
+   </p>
 }

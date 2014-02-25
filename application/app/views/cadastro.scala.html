@@ -1,22 +1,33 @@
 @(form: Form[Application.Cadastro])
 
-   	@helper.form(routes.Application.cadastramento) {
-  		 <h1>Sign in</h1>
-
-   		<p>
-       <input type="email" name="email" placeholder="Email" value="@form("email").value">
-  		 </p>
- 		  <p>
-       <input type="password" name="password" placeholder="Password">
-  		 </p>
-  		 <p>
-  		 <input type="password" name="repassword" placeholder="Password">
- 		  <p>
-    	   <button type="submit">Cadastrar</button>
-  		 </p>
-	}
-        
+<html>
+    <head>
+        <title>Caronas Inteligentes</title>
+        <link rel="shortcut icon" type="image/png" href="@routes.Assets.at("images/favicon.png")">
+        <link rel="stylesheet" type="text/css" media="screen" href="@routes.Assets.at("stylesheets/login.css")">
+    </head>
+    <body>
+        <header>
+            <a href="@routes.Application.index" id="logo"><span>Caronas </span>Inteligentes</a>
+        </header>
     
-  
-    <ul> <a href="http:/login">Faça seu login!</a>
-    </ul>
+    </body>
+</html>
+
+@helper.form(routes.Application.efetuaCadastro){
+   <h1>Faça sua conta</h1>
+
+   <p>
+       <input type="email" name="email" placeholder="Email" value="@form("email").value">
+   </p>
+   <p>
+       <input type="password" name="password" placeholder="Senha" value="@form("password").value">
+   </p>
+    <p>
+       <input type="password" name="repassword" placeholder="Confirme a senha" value="@form("repassword").value">
+   </p>
+   <p>
+       <button type="submit">OK</button>
+   </p>
+
+}
