@@ -1,22 +1,14 @@
-@(caronas: List[Carona], solicitacoes: List[SolicitacaoCarona], user: Usuario)
+@(Aviso: String)
 
 <html>
     <head>
         <title>Caronas Inteligentes</title>
         <link rel="shortcut icon" type="image/png" href="@routes.Assets.at("images/favicon.png")">
         <link rel="stylesheet" type="text/css" media="screen" href="@routes.Assets.at("stylesheets/login.css")">
-    <header>
-    <dl id="usuario">
-        <dt></dt>
-        <dd>
-            @user.email <a href="@routes.Application.logout()">Logout</a>
-        </dd>
-    </dl>
-</header>
     </head>
     <body>
         <header>
-            
+            <a href="@routes.Application.index" id="logo"><span>Caronas </span>Inteligentes</a> <h1> @Aviso </h1>
         </header>
     
     </body>

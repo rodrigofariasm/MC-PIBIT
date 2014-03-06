@@ -1,9 +1,10 @@
 package models;
 
+import exceptions.*;
+
 import java.util.*;
 import javax.persistence.*;
 import play.db.ebean.*;
-import play.db.ebean.Model;
 import utilidades.BCrypt;
 @Entity
 public class Usuario extends Model{
@@ -16,7 +17,10 @@ public class Usuario extends Model{
 	@Id
 	public String email;
 	
+	
 	public String password;
+	
+	
 	
 	
 	public Usuario(){
@@ -35,21 +39,29 @@ public class Usuario extends Model{
 		 return Usuario.find.all();
 	}
 
-	public static void create(Usuario usuario) throws Exception{
+	/**
+	 * Metodo para salvar usuario no BD
+	 * @param usuario Usuario a ser salvo no BD
+	 * @throws UsuarioJaExisteException se o Usuario já está cadastrado no BD
+	 */
+	public static void create(Usuario usuario) throws UsuarioJaExisteException{
 		if(find.where().eq("email", usuario.email).findUnique() == null){
-			BCrypt crip = new BCrypt();
-			String senha = crip.hashpw(usuario.password, crip.gensalt());
-			usuario.password = senha;
+			
+			String senha = BCrypt.hashpw(usuario.password, BCrypt.gensalt());
+			usuario = new Usuario(usuario.email, senha);
 			usuario.save();
-		}else throw new Exception("Tente outro e-mail");
+		}else throw new UsuarioJaExisteException("");
 	 }
 	
-	public static Usuario authenticate(String email, String password) throws Exception {
-		BCrypt crip = new BCrypt();
+	
+	public static String authenticate(String email, String password) throws UsuarioNaoEncontradoException, SenhaIncorretaException {
         Usuario x = find.where().eq("email", email).findUnique();
-		if(crip.checkpw(password, x.password)) return x;
+        if(x == null){
+        	throw new UsuarioNaoEncontradoException("");
+        }
+		if(BCrypt.checkpw(password, x.password)) return null;
 		else{
-			throw new Exception("Senhas não conferem");
+			throw new SenhaIncorretaException("");
 		}
 		
 

@@ -1,5 +1,6 @@
 package controllers;
 
+import views.html.*;
 import java.sql.Connection;
 import java.sql.Date;
 
@@ -11,10 +12,12 @@ import play.data.*;
 import play.data.Form.*;
 
 public class Application extends Controller {
+	
 	public static class Cadastro{
 	    public String email;
 	    public String password;
 		public String repassword;
+
 		public String validate() {
 		    if (!password.equals(repassword)) {
 		    	return "";
@@ -28,7 +31,7 @@ public class Application extends Controller {
 		public String password;
 		
 		public String validate() throws Exception {
-		    if (Usuario.authenticate(email, password) == null) {
+			if (Usuario.authenticate(email, password) != null) {
 		      return "Invalid user or password";
 		    }
 		    return null;
@@ -38,32 +41,47 @@ public class Application extends Controller {
 	
 	Connection connection = DB.getConnection();
 	DataSource ds = DB.getDataSource();
-	static SistemaL sistema = new SistemaL(); // Cuida da parte lógica, para deixar esse controller menos ambiguo
 	
 	
 	static Form<Usuario> userForm = Form.form(Usuario.class);
 
+	@Security.Authenticated(Secured.class)
 	public static Result index() {
-		return redirect(routes.Application.login());
+		return ok(index.render(
+		        Carona.findInvolving(request().username()), 
+		        SolicitacaoCarona.findInvolving(request().username()),
+		        Usuario.find.byId(request().username())
+		    )); 
 	}
 
 	public static Result login() {
-		return ok(views.html.index.render(Form.form(Login.class)));
+		return ok(login.render(Form.form(Login.class)));
 	}
-
-	public static Result efetuaLogin() throws Exception{
-		Form<Login> loginForm = Form.form(Login.class).bindFromRequest();
+	
+	public static Result authenticate() {
+	    Form<Login> loginForm = Form.form(Login.class).bindFromRequest();
 	    if (loginForm.hasErrors()) {
-	        return badRequest(views.html.index.render(Form.form(Login.class)));
+	        return badRequest(login.render(loginForm));
 	    } else {
 	        session().clear();
 	        session("email", loginForm.get().email);
-	        return TODO;
+	        return redirect(
+	            routes.Application.index()
+	        );
 	    }
+	}
+	
+	
+	public static Result logout() {
+	    session().clear();
+	    flash("success", "You've been logged out");
+	    return redirect(
+	        routes.Application.login()
+	    );
 	}
 
 	public static Result cadastro() {
-		return ok(views.html.cadastro.render(Form.form(Cadastro.class)));
+		return ok(cadastro.render(Form.form(Cadastro.class)));
 	}
 
 	public static Result efetuaCadastro()throws Exception{
@@ -71,7 +89,7 @@ public class Application extends Controller {
 		Cadastro novoC = cadastroForm.get();
 		if(cadastroForm.hasErrors()) {
 			return badRequest(
-					views.html.cadastro.render(Form.form(Cadastro.class))
+					cadastro.render(Form.form(Cadastro.class))
 					);
 		} else {
 			try{
@@ -80,10 +98,12 @@ public class Application extends Controller {
 			}}catch (Exception e){
 				System.out.println(e);
 			}
-			return ok(views.html.index.render(Form.form(Login.class)));
+			return redirect(routes.Application.login());
 		}
 
 	}
+	
+
 	
 
 	

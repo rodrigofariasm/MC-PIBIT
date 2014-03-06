@@ -3,6 +3,7 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 import models.*;
+import exceptions.*;
 import org.junit.*;
 import static org.junit.Assert.*;
 import play.test.WithApplication;
@@ -16,7 +17,7 @@ public class UsuarioTest extends WithApplication {
     
     @Test
     public void criarEpegarUsuario()throws Exception {
-        new Usuario("bob@gmail.com", "secret").save();
+        Usuario.create(new Usuario("bob@gmail.com", "secret"));
         Usuario bob = Usuario.find.where().eq("email", "bob@gmail.com").findUnique();
         assertNotNull(bob);
         assertEquals("bob@gmail.com", bob.email);
@@ -24,9 +25,16 @@ public class UsuarioTest extends WithApplication {
     
     @Test
     public void tryAuthenticateUsuario() throws Exception{
-        new Usuario("bob@gmail.com", "secret").save(); 
-        assertNotNull(Usuario.authenticate("bob@gmail.com", "secret"));
-        assertNull(Usuario.authenticate("bob@gmail.com", "badpassword"));
-        assertNull(Usuario.authenticate("tom@gmail.com", "secret"));
+    	Usuario.create(new Usuario("bob@gmail.com", "secret"));
+        assertNull(Usuario.authenticate("bob@gmail.com", "secret"));
+        try{ Usuario.authenticate("bob@gmail.com", "badpassword");
+        }catch(Exception e){
+        	assertTrue(e.getClass().equals(SenhaIncorretaException.class));
+        }
+        try{
+        assertNotNull(Usuario.authenticate("tom@gmail.com", "secret"));
+        }catch(Exception e){
+        	assertTrue(e.getClass().equals(UsuarioNaoEncontradoException.class));
+        }
     }
 }
