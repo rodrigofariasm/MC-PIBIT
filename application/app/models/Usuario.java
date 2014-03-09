@@ -57,11 +57,11 @@ public class Usuario extends Model{
 	public static String authenticate(String email, String password) throws UsuarioNaoEncontradoException, SenhaIncorretaException {
         Usuario x = find.where().eq("email", email).findUnique();
         if(x == null){
-        	throw new UsuarioNaoEncontradoException("");
+        	return "Usuario não encontrado";
         }
 		if(BCrypt.checkpw(password, x.password)) return null;
 		else{
-			throw new SenhaIncorretaException("");
+			return "senha incorreta";
 		}
 		
 

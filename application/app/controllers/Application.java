@@ -19,9 +19,10 @@ public class Application extends Controller {
 		public String repassword;
 
 		public String validate() {
-		    if (!password.equals(repassword)) {
-		    	return "";
+		    if (!password.equals(repassword) || password.length() < 8) {
+		    	return "Senha incorreta";
 		    }
+		    if(email == null || email.equals("")) return "Tente algum email";
 		    return null;
 		}
 	}
