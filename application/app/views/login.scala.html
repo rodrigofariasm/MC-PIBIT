@@ -1,41 +1,59 @@
 @(form: Form[Application.Login])
 
 @main("Caronas Inteligentes"){
-<html>
+
+<meta charset="utf-8">
+
+
+
     <head>
-        <title>Caronas Inteligentes</title>
-        <link rel="shortcut icon" type="image/png" href="@routes.Assets.at("images/favicon.png")">
-        <link rel="stylesheet" type="text/css" media="screen" href="@routes.Assets.at("stylesheets/login.css")">
+    	<link rel="shortcut icon" type="image/png" href="@routes.Assets.at("images/favicon.png")">
+        <link rel="stylesheet" type="text/css" media="screen" href="@routes.Assets.at("stylesheets/signin.css")">
     </head>
-    <body>
-        <header>
-            <a href="@routes.Application.index" id="logo"><span>Caronas </span>Inteligentes</a>
-        </header>
     
-    </body>
-</html>
+    
+    
+    <div class="hero-unit">
+			    <h1>Caronas Inteligentes</h1>
 
-
-<form class="form-horizontal" action="@routes.Application.authenticate()" method="post">
-   <div class="control-group">
-			    <label class="control-label" for="email">E-mail</label>
-			    <div class="controls">
-			       <input type="email" name="email" placeholder="Email" value="@form("email").value">
-			    </div>
-			  </div>
-			  <div class="control-group">
-			    <label class="control-label" for="senha">Senha</label>
-			    <div class="controls">
-					<input type="password" name="password" placeholder="Senha">
-			    </div>
-			  </div>
-			  <div class="control-group">
-			    <div class="controls">
-				  <button type="submit" class="btn btn-primary">Entrar</button>
-				  <button type="button" class="btn" onclick="location.href = '@routes.Application.cadastro()';">Cadastrar</button>
+			</div>
+			<div class="form-actions">
+			@if(flash.containsKey("erro")){
+				<div class="alert alert-success container">
+					<button type="button" class="close" data-dismiss="alert">&times;</button>
+  					@flash.get("erro")
 				</div>
-			    </div>
-			  </div>
+			}
+			@if(flash.containsKey("success")){
+				<div class="alert alert-success container">
+					<button type="button" class="close" data-dismiss="alert">&times;</button>
+  					@flash.get("success")
+				</div>
+			}
+
+    
+    
+    
+    <body>
+    <div class="container">    
+	<form class="form-signin" role="form" action="@routes.Application.authenticate()" method="post">
+   			   <br>
+   			   <br>
+   			   <h3>Faça login ou cadastre-se</h3>
+			   
+   			   <br>	
+			   <input type="email" class= "form-control" name="email" placeholder="e-mail" value="@form("email").value" required>
+			   <input type="password" class="form-control" name="password" placeholder="senha">
+			   <button type="submit" class="btn  btn-primary btn-block">   Entrar   </button>
+			   <button type="button" class="btn btn-primary btn-block " onclick="location.href = '@routes.Application.cadastro()';">Cadastre-se</button>
 			</form>
+	</div>	
+		
+    </body>
+		
+		
+
+  <body>
+
    
 }
