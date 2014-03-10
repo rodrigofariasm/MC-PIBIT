@@ -32,7 +32,9 @@ public class Application extends Controller {
 		public String password;
 		
 		public String validate() throws Exception {
-			if (Usuario.authenticate(email, password) != null) {
+			String erro = Usuario.authenticate(email, password);
+			if (erro  != null) {
+				 flash("erro", erro);
 		      return "Invalid user or password";
 		    }
 		    return null;
