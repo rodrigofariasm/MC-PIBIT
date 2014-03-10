@@ -61,7 +61,7 @@ public class Usuario extends Model{
         }
 		if(BCrypt.checkpw(password, x.password)) return null;
 		else{
-			return "senha incorreta";
+			return "Senha incorreta";
 		}
 		
 
