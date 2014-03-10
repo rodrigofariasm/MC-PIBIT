@@ -1,34 +1,44 @@
 @(form: Form[Application.Cadastro])
+
 @main("Caronas Inteligentes"){
-<html>
+
+<meta charset="utf-8">
+
+
+
     <head>
-        <title>Caronas Inteligentes</title>
-        <link rel="shortcut icon" type="image/png" href="@routes.Assets.at("images/favicon.png")">
-        <link rel="stylesheet" type="text/css" media="screen" href="@routes.Assets.at("stylesheets/login.css")">
+    	<link rel="shortcut icon" type="image/png" href="@routes.Assets.at("images/favicon.png")">
+        <link rel="stylesheet" type="text/css" media="screen" href="@routes.Assets.at("stylesheets/signin.css")">
     </head>
-    <body>
-        <header>
-            <a href="@routes.Application.index" id="logo"><span>Caronas </span>Inteligentes</a>
-        </header>
     
+    
+
+    
+    <body>    
+	  <form class="form-signin" role="form" action="@routes.Application.efetuaCadastro()" method="post">
+   			   <br>
+   			   <br>
+   			   <h3>Preencha os campos abaixo para completar o cadastro</h3>
+			   <br>	
+   			   <input type="email" class= "control-label" name="email" placeholder="e-mail" value="@form("email").value" required>
+			   <br>
+			   <input type="password" class="control-label" name="password" placeholder="senha">
+			   <br>
+			   <input type="password" class="control-label" name="repassword" placeholder="Confirme a senha" value="@form("repassword").value">
+			   <br>
+			   <button type="submit" class="btn  btn-primary">   Entrar   </button>
+			   
+			   
+       </form>
+	</div>	
+		
     </body>
-</html>
+		
+		
 
-@helper.form(routes.Application.efetuaCadastro){
-   <h2>Faça sua conta</h2>
+  <body>
 
-   <p>
-       <input type="email" name="email" placeholder="Email" value="@form("email").value">
-   </p>
-   <p>
-       <input type="password" name="password" placeholder="Senha" value="@form("password").value">
-   </p>
-    <p>
-       <input type="password" name="repassword" placeholder="Confirme a senha" value="@form("repassword").value">
-   </p>
-   <p>
-       <button type="submit">OK</button>
-   </p>
-
+   
 }
-}
+
+

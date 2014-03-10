@@ -351,6 +351,7 @@ h6,
   font-weight: 500;
   line-height: 1.1;
   color: inherit;
+  text-align: center;
 }
 h1 small,
 h2 small,
@@ -376,6 +377,7 @@ h6 .small,
 .h4 .small,
 .h5 .small,
 .h6 .small {
+	
   font-weight: normal;
   line-height: 1;
   color: #999;
@@ -386,6 +388,7 @@ h2,
 .h2,
 h3,
 .h3 {
+  text-align: center;
   margin-top: 20px;
   margin-bottom: 10px;
 }
@@ -401,6 +404,7 @@ h2 .small,
 .h2 .small,
 h3 .small,
 .h3 .small {
+ text-align: center;
   font-size: 65%;
 }
 h4,
@@ -433,6 +437,7 @@ h1,
 h2,
 .h2 {
   font-size: 30px;
+  text-align: center;
 }
 h3,
 .h3 {
@@ -721,6 +726,7 @@ pre code {
   overflow-y: scroll;
 }
 .container {
+  text-align:inherit;
   padding-right: 15px;
   padding-left: 15px;
   margin-right: auto;
