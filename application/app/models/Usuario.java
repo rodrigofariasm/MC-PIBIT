@@ -16,12 +16,8 @@ public class Usuario extends Model{
 
 	@Id
 	public String email;
-	
-	
 	public String password;
-	
-	
-	
+	public static Finder<String, Usuario> find = new Finder<String, Usuario>(String.class, Usuario.class);
 	
 	public Usuario(){
 		
@@ -29,11 +25,6 @@ public class Usuario extends Model{
 	public Usuario(String email, String password){
 		this.email = email; this.password = password;
 	}
-	
-	
-	
-	public static Finder<String, Usuario> find = new Finder<String, Usuario>(String.class, Usuario.class);
-	
 	
 	public static List<Usuario> all() {
 		 return Usuario.find.all();
@@ -44,17 +35,25 @@ public class Usuario extends Model{
 	 * @param usuario Usuario a ser salvo no BD
 	 * @throws UsuarioJaExisteException se o Usuario já está cadastrado no BD
 	 */
-	public static void create(Usuario usuario) throws UsuarioJaExisteException{
+	public static String create(Usuario usuario) {
 		if(find.where().eq("email", usuario.email).findUnique() == null){
-			
 			String senha = BCrypt.hashpw(usuario.password, BCrypt.gensalt());
 			usuario = new Usuario(usuario.email, senha);
 			usuario.save();
-		}else throw new UsuarioJaExisteException("");
+			return null;
+		}else{
+			return "UsuarioJaExisteException";
+		}
 	 }
 	
-	
-	public static String authenticate(String email, String password) throws UsuarioNaoEncontradoException, SenhaIncorretaException {
+	/**
+	 * Método que recebe os campos da area de Login, e realiza a autenticação
+	 * @param email
+	 * @param password
+	 * @return se a autenticação foi realizada com sucesso retona null, se não 
+	 * retorna uma string dizendo o motivo da falha.
+	 */
+	public static String authenticate(String email, String password){
         Usuario x = find.where().eq("email", email).findUnique();
         if(x == null){
         	return "Usuario não encontrado";
@@ -66,8 +65,6 @@ public class Usuario extends Model{
 		
 
 	}
-	
-	
 	
 	public boolean equals(Object obj){ 
 	       if(obj instanceof Usuario){ 

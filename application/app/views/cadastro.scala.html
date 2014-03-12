@@ -1,7 +1,9 @@
 @(form: Form[Application.Cadastro])
-@import helper._
-@main("Cadastro") {
+@main("Caronas Inteligentes") {
+	
 <meta charset="utf-8">
+
+
      <div class="hero-unit">
     		<h1>Caronas Inteligentes</h1>
 			</div>
@@ -17,41 +19,30 @@
 					@flash.get("success")
 				</div>
 			}
-    
-    <body>   
-    
+
 	  <form class="form-signin" role="form" action="@routes.Application.efetuaCadastro()" method="post">
-   			   <br>
-   			   <br>
-   			   <h3>Preencha os campos abaixo para completar o cadastro</h3>
+   			
+   			   <h4>Realize seu cadastro</h4>
 			   <br>	
-   			   <div class="control-group">
-			    <div class="controls">
-			   <input type="email" class= "control-label" name="email" placeholder="e-mail" required>
+   			   <div class="control-group" id="campoEmail">
+			   <input type="email" class= "control-label" id="email" name="email" placeholder="e-mail" value="@form("email").value" required>
 			   </div>
+			   <div class="control-group" id="campoPassword">
+			   <input type="password" class="control-label" id="password" name="password" placeholder="senha" minlength = "8" required>
 			   </div>
-			   <div class="control-group" width = 400px>
-			    <div class="controls">
-			   <input type="password" class="control-label" name="password" placeholder="senha">
-			   </div>
-			   </div>
-			   <div class="control-group" width = 400px>
-			    <div class="controls">
-			  <input type="password" class="control-label" name="repassword" placeholder="Confirme a senha" rows = 40>
+			   <div class="control-group" id="campoRepassword">
+			  <input type="password" class="control-label" id="repassword" name="repassword" placeholder="Confirme a senha" minlength="8" required>
 			  </div>
-			  </div>
+			   <div class="control-group">
 			   <br>
-			   <button type="submit" class="btn  btn-primary">   Cadastrar</button>
-			   
+			   <button type="submit" class="btn  btn-primary">  Cadastrar</button>
+			   </div>
 			   
        </form>
-	</div>	
-    </body>
-		
-		
-
-  <body>
-
+	</div>
+	
+	
+	
    
 }
 

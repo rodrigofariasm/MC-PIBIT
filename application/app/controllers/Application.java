@@ -19,19 +19,29 @@ public class Application extends Controller {
 		public String repassword;
 
 		public String validate() {
-		    if (!password.equals(repassword) || password.length() < 8) {
-		    	return "Senha incorreta";
+			String erro = null;
+		    if (!password.equals(repassword)) {
+		    	erro = "Senha incorreta";
 		    }
-		    if(email == null || email.equals("")) return "Tente algum email";
-		    return null;
+		    if (password.length() < 8){
+		    	erro = "Senha deve ter no mínimo 8 caracteres";
+		    }
+		    if(email == null || email.trim().equals("")) {
+		    	return "Tente algum email";
+		    }else if(Usuario.find.where().eq("email", this.email).findUnique() != null){
+					erro = "Usuario já existe";
+		    }
+		    if(erro  != null) {
+				 flash("erro", erro);
+		    }
+		    return erro;
 		}
 	}
 	public static class Login{
 		public String email;
-		
 		public String password;
 		
-		public String validate() throws Exception {
+		public String validate(){
 			String erro = Usuario.authenticate(email, password);
 			if (erro  != null) {
 				 flash("erro", erro);
@@ -74,7 +84,6 @@ public class Application extends Controller {
 	    }
 	}
 	
-	
 	public static Result logout() {
 	    session().clear();
 	    flash("success", "You've been logged out");
@@ -87,28 +96,23 @@ public class Application extends Controller {
 		return ok(cadastro.render(Form.form(Cadastro.class)));
 	}
 
-	public static Result efetuaCadastro()throws Exception{
+	public static Result efetuaCadastro(){
 		Form<Cadastro> cadastroForm = Form.form(Cadastro.class).bindFromRequest();
-		Cadastro novoC = cadastroForm.get();
 		if(cadastroForm.hasErrors()) {
 			return badRequest(
 					cadastro.render(Form.form(Cadastro.class))
 					);
 		} else {
-			try{
-			if(cadastroForm.get().validate()== null){
-				Usuario.create(new Usuario(novoC.email, novoC.password));
-			}}catch (Exception e){
-				System.out.println(e);
+			String validacao = cadastroForm.get().validate();
+			if( validacao== null){
+				Usuario.create(new Usuario(cadastroForm.get().email, cadastroForm.get().password));
+			}else{
+				flash("erro", validacao);
+				return redirect(routes.Application.cadastro());
 			}
+			flash("success", "Cadastro realizado");
 			return redirect(routes.Application.login());
 		}
 
 	}
-	
-
-	
-
-	
-	
 }

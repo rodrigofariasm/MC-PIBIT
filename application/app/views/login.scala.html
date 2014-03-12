@@ -22,15 +22,15 @@
 	<form class="form-signin" role="form" action="@routes.Application.authenticate()" method="post">
    			   <br>
    			   <br>
-   			   <h3>Faça login ou cadastre-se</h3>
+   			   <h4>Faça login ou cadastre-se</h4>
 			   
    			   <br>	
-			   <div class="control-group">
+			   <div class="control-group" id="campoEmail">
 			    <div class="controls">
 			   <input type="email" class= "control-label" name="email" placeholder="e-mail" value="@form("email").value" required>
 			   </div>
 			   </div>
-			   <div class="control-group">
+			   <div class="control-group" id = "campoSenha">
 			    <div class="controls">
 			   <input type="password" class="control-label" name="password" placeholder="senha">
 			   </div>
