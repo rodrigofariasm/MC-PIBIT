@@ -3,8 +3,7 @@
 
 <meta charset="utf-8">
     
-  	<br>
-  	<br>
+  	
     <div class="hero-unit">
     		<h1>Caronas Inteligentes</h1>
 			</div>
@@ -20,7 +19,6 @@
 				</div>
 			}
 
-    
 	<form class="form-signin" role="form" action="@routes.Application.authenticate()" method="post">
    			   <br>
    			   <br>
@@ -29,12 +27,12 @@
    			   <br>	
 			   <div class="control-group">
 			    <div class="controls">
-			   <input type="email" class= "form-control" name="email" placeholder="e-mail" value="@form("email").value" required>
+			   <input type="email" class= "control-label" name="email" placeholder="e-mail" value="@form("email").value" required>
 			   </div>
 			   </div>
 			   <div class="control-group">
 			    <div class="controls">
-			   <input type="password" class="form-control" name="password" placeholder="senha">
+			   <input type="password" class="control-label" name="password" placeholder="senha">
 			   </div>
 			   </div>
 			   <div class="control-group">
@@ -45,7 +43,6 @@
 			    </div>
 			  </div>
 			</form>
-		
 
    
 }
