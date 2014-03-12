@@ -1,7 +1,6 @@
 @(form: Form[Application.Cadastro])
-
-@main("Caronas Inteligentes"){
-
+@import helper._
+@main("Cadastro") {
 <meta charset="utf-8">
 
 
@@ -20,11 +19,11 @@
    			   <br>
    			   <h3>Preencha os campos abaixo para completar o cadastro</h3>
 			   <br>	
-   			   <input type="email" class= "control-label" name="email" placeholder="e-mail" value="@form("email").value" required>
+   			   <input type="email" class= "control-label" name="email" placeholder="e-mail" rows = 40>
 			   <br>
-			   <input type="password" class="control-label" name="password" placeholder="senha">
+			   <input type="password" class="control-label" name="password" placeholder="senha" rows = 40>
 			   <br>
-			   <input type="password" class="control-label" name="repassword" placeholder="Confirme a senha" value="@form("repassword").value">
+			   <input type="password" class="control-label" name="repassword" placeholder="Confirme a senha" rows = 40>
 			   <br>
 			   <button type="submit" class="btn  btn-primary">   Entrar   </button>
 			   
