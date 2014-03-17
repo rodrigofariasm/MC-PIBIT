@@ -15,13 +15,12 @@ public class SolicitacaoCarona extends Model{
     @OneToOne
     public Usuario user;
 	
-    public SolicitacaoCarona(long ID, String origem, String destino, java.util.Date data,
+    public SolicitacaoCarona(String origem, String destino, java.util.Date data,
     		Usuario solicitante, String ponto){
     	this.origem = origem;
     	this.destino = destino;
     	this.data = data;
     	this.user = solicitante;
-    	this.ID = ID;
     	this.pontoDeEncontro = ponto;
      }
     
@@ -33,14 +32,14 @@ public class SolicitacaoCarona extends Model{
             .findList();
     }
     
-    public static SolicitacaoCarona create(long ID, String origem, String destino, java.util.Date data, String ponto, String solicitante) {
-    	SolicitacaoCarona sCarona = new SolicitacaoCarona(ID, origem, destino, data, Usuario.find.byId(solicitante), ponto);
+    public static SolicitacaoCarona create(String origem, String destino, java.util.Date data, String ponto, String solicitante) {
+    	SolicitacaoCarona sCarona = new SolicitacaoCarona(origem, destino, data, Usuario.find.byId(solicitante), ponto);
         sCarona.save();
         sCarona.saveManyToManyAssociations("caronistas");
         return sCarona;
     }
     
-    public static SolicitacaoCarona findSolicitante(String user) {
+    public static SolicitacaoCarona findSolicitacao(String user) {
         return find.where()
             .eq("user.email", user)
             .findUnique();

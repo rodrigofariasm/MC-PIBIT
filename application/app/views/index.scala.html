@@ -1,21 +1,20 @@
 @(caronas: List[Carona], solicitacoes: List[SolicitacaoCarona], user: Usuario)
+@import helper._
+@main("Caronas Inteligentes") {
+	
+<meta charset="utf-8">
 
-<html>
-    <head>
-        <title>Caronas Inteligentes</title>
-    <header>
-    <dl id="usuario">
-        <dt></dt>
-        <dd>
-            @user.email <a href="@routes.Application.logout()">Logout</a>
-        </dd>
-    </dl>
-</header>
-    </head>
-    <body>
-        <header>
-            
-        </header>
-    
-    </body>
-</html>
+
+ <div class="nav-bar">
+   		  <div class="control-group">
+    		<li><h1>Caronas Inteligentes</h1>
+    		<h4>Olá @user.email</h4>
+    		<button type="button" class="btn" onclick="location.href = '@routes.Application.logout()';	">Sair</button> </li>
+		  	</div>
+	</div>
+
+
+
+
+
+}

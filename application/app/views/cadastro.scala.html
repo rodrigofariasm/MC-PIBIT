@@ -4,9 +4,12 @@
 <meta charset="utf-8">
 
 
-     <div class="hero-unit">
+     <div class="nav-bar">
+   		  <div class="control-group">
     		<h1>Caronas Inteligentes</h1>
-			</div>
+    		<button type="button" class="btn" onclick="location.href = '@routes.Application.login()';	">Entrar</button>
+		  	</div>
+	</div>
 	
     <div class="form-actions">
 			@if(flash.containsKey("erro")){

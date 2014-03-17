@@ -86,7 +86,7 @@ public class Application extends Controller {
 	
 	public static Result logout() {
 	    session().clear();
-	    flash("success", "You've been logged out");
+	    flash("success", "Obrigado, por usar nosso app.");
 	    return redirect(
 	        routes.Application.login()
 	    );

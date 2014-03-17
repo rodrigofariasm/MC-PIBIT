@@ -1,20 +1,29 @@
+package testes;
 import models.Usuario;
 
 import org.junit.*;
 import static org.junit.Assert.*;
 import java.util.*;
 import play.mvc.*;
+import play.data.Form;
 import play.libs.*;
 import play.test.*;
 import static play.test.Helpers.*;
 import com.avaje.ebean.Ebean;
 import com.google.common.collect.ImmutableMap;
+import controllers.*;
 
 public class LoginTest extends WithApplication {
     @Before
     public void setUp() throws Exception{
         start(fakeApplication(inMemoryDatabase(), fakeGlobal()));
-        Usuario.create(new Usuario("bob@example.com", "secret"));
+    }
+    
+    @Test
+    public void renderCadastro() {
+      Content html = views.html.cadastro.render(Form<Application.Cadastro.class>);
+      assertThat(contentType(html)).isEqualTo("text/html");
+      assertThat(contentAsString(html)).contains("Realize seu cadastro");
     }
     
     @Test
