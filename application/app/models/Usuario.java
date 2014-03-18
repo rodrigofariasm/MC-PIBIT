@@ -17,13 +17,16 @@ public class Usuario extends Model{
 	@Id
 	public String email;
 	public String password;
+	public String nome;
 	public static Finder<String, Usuario> find = new Finder<String, Usuario>(String.class, Usuario.class);
 	
 	public Usuario(){
 		
 	}
-	public Usuario(String email, String password){
-		this.email = email; this.password = password;
+	public Usuario(String email, String nome, String password){
+		this.email = email;
+		this.password = password;
+		this.nome = nome;
 	}
 	
 	public static List<Usuario> all() {
@@ -38,7 +41,7 @@ public class Usuario extends Model{
 	public static String create(Usuario usuario) {
 		if(find.where().eq("email", usuario.email).findUnique() == null){
 			String senha = BCrypt.hashpw(usuario.password, BCrypt.gensalt());
-			usuario = new Usuario(usuario.email, senha);
+			usuario = new Usuario(usuario.email,usuario.nome,  senha);
 			usuario.save();
 			return null;
 		}else{

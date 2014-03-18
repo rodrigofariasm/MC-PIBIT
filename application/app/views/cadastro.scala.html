@@ -1,4 +1,4 @@
-@(form: Form[Application.Cadastro])
+@(form: Form[Autenticador.Cadastro])
 @main("Caronas Inteligentes") {
 	
 <meta charset="utf-8">
@@ -7,29 +7,23 @@
      <div class="nav-bar">
    		  <div class="control-group">
     		<h1>Caronas Inteligentes</h1>
-    		<button type="button" class="btn" onclick="location.href = '@routes.Application.login()';	">Entrar</button>
+    		<button type="button" class="btn" onclick="location.href = '@routes.Autenticador.login()';	">Entrar</button>
 		  	</div>
 	</div>
 	
     <div class="form-actions">
-			@if(flash.containsKey("erro")){
-				<div class="alert alert-erro container">
-  					@flash.get("erro")
-				</div>
-			}
-			@if(flash.containsKey("success")){
-				<div class="alert alert-success container">
-					@flash.get("success")
-				</div>
-			}
 
-	  <form class="form-signin" role="form" action="@routes.Application.efetuaCadastro()" method="post">
+	  <form class="form-signin" role="form" action="@routes.Autenticador.efetuaCadastro()" method="post">
    			
    			   <h4>Realize seu cadastro</h4>
 			   <br>	
    			   <div class="control-group" id="campoEmail">
 			   <input type="email" class= "control-label" id="email" name="email" placeholder="e-mail" value="@form("email").value" required>
 			   </div>
+			    <div class="control-group" id="campoPassword">
+			   <input type="text" class="control-label" id="nome" name="nome" placeholder="nome" required>
+			   </div>
+			  
 			   <div class="control-group" id="campoPassword">
 			   <input type="password" class="control-label" id="password" name="password" placeholder="senha" minlength = "8" required>
 			   </div>
@@ -42,6 +36,16 @@
 			   </div>
 			   
        </form>
+       @if(flash.containsKey("erro")){
+				<div class="alert alert-erro container">
+  					@flash.get("erro")
+				</div>
+			}
+			@if(flash.containsKey("success")){
+				<div class="alert alert-success container">
+					@flash.get("success")
+				</div>
+			}
 	</div>
 	
 	

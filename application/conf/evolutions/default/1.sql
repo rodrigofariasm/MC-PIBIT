@@ -27,6 +27,7 @@ create table solicitacao_carona (
 create table usuario (
   email                     varchar(255) not null,
   password                  varchar(255),
+  nome                      varchar(255),
   constraint pk_usuario primary key (email))
 ;
 

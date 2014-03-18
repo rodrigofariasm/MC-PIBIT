@@ -3,14 +3,14 @@
 # ~~~~
 
 # Home page
-GET     /                           controllers.Application.index()
+GET   	/                           controllers.Application.index()
 
 # Login/Cadastro
-GET   /login						controllers.Application.login()
-POST  /login                        controllers.Application.authenticate()
-GET   /logout                       controllers.Application.logout()
-GET   /cadastro                     controllers.Application.cadastro()
-POST  /cadastro                     controllers.Application.efetuaCadastro()
+GET   /login						controllers.Autenticador.login()
+POST  /login                        controllers.Autenticador.authenticate()
+GET   /logout                       controllers.Autenticador.logout()
+GET   /cadastro                     controllers.Autenticador.cadastro()
+POST  /cadastro                     controllers.Autenticador.efetuaCadastro()
 
 
 # Map static resources from the /public folder to the /assets URL path
