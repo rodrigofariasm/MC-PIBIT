@@ -5,9 +5,10 @@
 
 
      <div class="nav-bar">
-   		  <div class="control-group">
+   		  <div class="controls-horizontal">
     		<h1>Caronas Inteligentes</h1>
-    		<button type="button" class="btn" onclick="location.href = '@routes.Autenticador.login()';	">Entrar</button>
+    		<button type="button" class="btn btn-default" 
+    			onclick="location.href = '@routes.Autenticador.login()';	">Entrar</button>
 		  	</div>
 	</div>
 	
@@ -37,7 +38,7 @@
 			   
        </form>
        @if(flash.containsKey("erro")){
-				<div class="alert alert-erro container">
+				<div class="alert alert-danger container">
   					@flash.get("erro")
 				</div>
 			}

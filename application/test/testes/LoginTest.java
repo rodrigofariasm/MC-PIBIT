@@ -21,7 +21,7 @@ public class LoginTest extends WithApplication {
     
     @Test
     public void renderCadastro() {
-      Content html = views.html.cadastro.render(Form<Application.Cadastro.class>);
+      Content html = views.html.cadastro.render(Form<Autenticador.Cadastro.class>);
       assertThat(contentType(html)).isEqualTo("text/html");
       assertThat(contentAsString(html)).contains("Realize seu cadastro");
     }

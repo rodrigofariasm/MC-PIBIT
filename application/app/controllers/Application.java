@@ -21,4 +21,18 @@ public class Application extends Controller {
 		        Usuario.find.byId(request().username())
 		    )); 
 	}
+	
+	@Security.Authenticated(Secured.class)
+	public static Result daCarona() {
+		 return TODO;
+	}
+	
+	@Security.Authenticated(Secured.class)
+	public static Result verCaronas(){
+		return ok(visualizarCaronas.render(
+		        Carona.findInvolving(request().username()), 
+		        SolicitacaoCarona.findInvolving(request().username()),
+		        Usuario.find.byId(request().username())
+		    ));
+	}
 }

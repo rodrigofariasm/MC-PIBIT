@@ -25,13 +25,13 @@
 			   <div class="control-group">
 			    <div class="controls">
 				  <button type="submit" class="btn btn-primary">Entrar</button>
-				  <button type="button" class="btn" onclick="location.href = '@routes.Autenticador.cadastro()';	">Cadastrar</button>
+				  <button type="button" class="btn btn-default" onclick="location.href = '@routes.Autenticador.cadastro()';	">Cadastrar</button>
 				</div>
 				
 			    </div>
 			    </form>
 			    @if(flash.containsKey("erro")){
-				<div class="alert alert-erro container">
+				<div class="alert alert-danger container">
   					@flash.get("erro")
 				</div>
 			}

@@ -18,7 +18,7 @@ public class UsuarioTest extends WithApplication {
     
     @Test
     public void criarEpegarUsuario()throws Exception {
-        Usuario.create(new Usuario("bob@gmail.com", "secret"));
+        Usuario.create(new Usuario("bob@gmail.com","Bob", "secret"));
         Usuario bob = Usuario.find.where().eq("email", "bob@gmail.com").findUnique();
         assertNotNull(bob);
         assertEquals("bob@gmail.com", bob.email);
@@ -26,7 +26,7 @@ public class UsuarioTest extends WithApplication {
     
     @Test
     public void tryAuthenticateUsuario() throws Exception{
-    	Usuario.create(new Usuario("bob@gmail.com", "secret"));
+    	Usuario.create(new Usuario("bob@gmail.com", "Bob", "secret"));
         assertNull(Usuario.authenticate("bob@gmail.com", "secret"));
         try{ Usuario.authenticate("bob@gmail.com", "badpassword");
         }catch(Exception e){

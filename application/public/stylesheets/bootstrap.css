@@ -1103,6 +1103,7 @@ input[type="color"],
           border-radius: 4px;
 }
 
+
 input,
 textarea,
 .uneditable-input {
@@ -1196,7 +1197,7 @@ input[type="file"] {
 }
 
 select {
-  width: 220px;
+  width: 50px;
   background-color: #ffffff;
   border: 1px solid #cccccc;
 }
@@ -4412,7 +4413,7 @@ input[type="submit"].btn.btn-mini {
 }
 
 .navbar .brand {
-  display: block;
+  display: inline;
   float: left;
   padding: 10px 20px 10px;
   margin-left: -20px;

@@ -19,7 +19,7 @@ public class TestCriacaoCaronasESolicitações {
 	@Before
 	public void setUp() throws Exception{
 		start(fakeApplication(inMemoryDatabase()));
-		Usuario.create(new Usuario("joao@email.com", "12341234"));
+		Usuario.create(new Usuario("joao@email.com", "joao", "12341234"));
 	}
 	
 	
