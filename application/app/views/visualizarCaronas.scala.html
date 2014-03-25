@@ -10,20 +10,28 @@
     			<button type="submit" class="btn btn-default" 
     				onclick="location.href = '@routes.Autenticador.logout()';	">Sair</button>
 		</div>
+		<br>
 <div class="table">
 <div class="row">
 
-        <div class="col-md-4"><b>Motorista</b></div>
-        <div class="col-md-4"><b>Origem</b></div>
-        <div class="col-md-4"><b>Destino</b></div>
+        <div class="col-md-1"><b>Motorista</b></div>
+        <div class="col-md-1"><b>Origem</b></div>
+        <div class="col-md-1"><b>Destino</b></div>
+        <div class="col-md-1"><b>Vagas</b></div>
+        <div class="col-md-1"><b>Horario</b></div>
+        
           </div>
 
 @for(carona <- caronas){
 	 <div class="row">
-        <div class="col-md-4">@carona.motorista.nome</div>
-        <div class="col-md-4">@carona.origem</div>
-        <div class="col-md-4">@carona.destino</div>
+        <div class="col-md-1">@carona.motorista.nome</div>
+        <div class="col-md-1">@carona.origem</div>
+        <div class="col-md-1">@carona.destino</div>
+        <div class="col-md-1">@carona.vagas</div>
+        <div class="col-md-1">@carona.data.getDate()/@carona.data.getMonth() @carona.data.getHours():@carona.data.getMinutes() </div> <span><button type="submit"
+        class = "btn btn-info">Pegar carona</button></span>
       </div>
+      
 }
 
 </div>

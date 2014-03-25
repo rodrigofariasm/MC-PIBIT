@@ -30,7 +30,7 @@ public class Application extends Controller {
 	@Security.Authenticated(Secured.class)
 	public static Result verCaronas(){
 		return ok(visualizarCaronas.render(
-		        Carona.findInvolving(request().username()), 
+		        Carona.find.all(), 
 		        SolicitacaoCarona.findInvolving(request().username()),
 		        Usuario.find.byId(request().username())
 		    ));

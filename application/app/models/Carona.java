@@ -13,7 +13,7 @@ public class Carona extends Model{
 	 long ID;
 	 public String origem, destino,  vagas;
 	 public java.util.Date data;
-	 
+
 	 @ManyToOne
 	 public Usuario motorista;
 	 @ManyToOne

@@ -57,16 +57,14 @@ public class Usuario extends Model{
 	 * retorna uma string dizendo o motivo da falha.
 	 */
 	public static String authenticate(String email, String password){
-        Usuario x = find.where().eq("email", email).findUnique();
-        if(x == null){
+        Usuario usuario = find.where().eq("email", email).findUnique();
+        if(usuario == null){
         	return "Usuario não encontrado";
         }
-		if(BCrypt.checkpw(password, x.password)) return null;
+		if(BCrypt.checkpw(password, usuario.password)) return null;
 		else{
 			return "Senha incorreta";
 		}
-		
-
 	}
 	
 	public boolean equals(Object obj){ 

@@ -1,43 +1,18 @@
 @(caronas: List[Carona], solicitacoes: List[SolicitacaoCarona], user: Usuario)
-@import helper._
+
 @main("Caronas Inteligentes") {
-	
 <meta charset="utf-8">
-	 <div class="nav-bar">
-	 
-    			<h2>Caronas Inteligentes</h2>
-    			<h4>Olá @user.nome</h4>
-    			<button type="submit" class="btn btn-default" 
-    				onclick="location.href = '@routes.Autenticador.logout()';	">Sair</button>
-		</div>
-	<form class="form-group" role="form" action="@routes.Application.daCarona()" method="post" id="criacaoForm">
-	<div class = "form-actions">
-		<div class="controls">
-				  <button type="button" id ="darCarona"class="btn btn-primary">Dar Carona</button>
-				  <button type="button" id ="solicitarCarona" class="btn btn-info" >Solicitar Carona</button>
-		</div>
-		<br>
-		 <div class="controls">
-			   <input type="text" id="origem" class= "control-label" name="Origem" placeholder="Origem" >
-			   <input type="text" class="control-label" id="Destino" name="Destino" placeholder="Destino">
-		</div>
-		<div class="controls">
-    		<input type="date" title= "Dia que deseja dar/receber a carona" id="dia"
-    			class="controls" name="Dia-Mes">
-    		<input type="time" title="Hora que deseja estar no seu destino." 
-    			class="controls"	id="hora-min" name="hora-min" value="12:00">
-  			</div>
+	<div class="nav-pills">
+		<h1>Caronas Inteligentes</h1>
+		<h4>Olá @user.nome</h4>
+    	<button align="right" type="submit" class="btn btn-default" 
+	    	onclick="location.href = '@routes.Autenticador.logout()';	">Sair</button>
 	</div>
-	</form>
+   	<br>
+   	<br>
+	<div class = "form-actions">
+		<button type="button" id ="darCarona"class="btn btn-primary">Dar Carona</button>
+				  <button type="submit" id ="solicitarCarona" onclick="location.href = '@routes.Application.verCaronas()" class="btn btn-info" >Solicitar Carona</button>
+	</div>
 	
-	<script >
-	var currentDate = new Date()
-	var day = currentDate.getDate()
-	var month = currentDate.getMonth() + 1
-	var year = currentDate.getFullYear()
-	$("#origem").content() = (year + "-0" + month + "-" + day)
-	
-	</script>
-
-
 }
