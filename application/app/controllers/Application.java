@@ -24,7 +24,12 @@ public class Application extends Controller {
 	
 	@Security.Authenticated(Secured.class)
 	public static Result daCarona() {
-		 return TODO;
+		 return ok(darCarona.render(Usuario.find.byId(request().username())));
+	}
+	
+	@Security.Authenticated(Secured.class)
+	public static Result criaCarona() {
+		 return ok(darCarona.render(Usuario.find.byId(request().username())));
 	}
 	
 	@Security.Authenticated(Secured.class)

@@ -12,8 +12,9 @@ POST  /cadastro                     controllers.Autenticador.efetuaCadastro()
 
 # Home page
 GET  	/                           controllers.Application.index()
-GET   	/vercaronas					controllers.Application.verCaronas()
-POST	/							controllers.Application.daCarona()
+GET   	/verCaronas					controllers.Application.verCaronas()
+GET		/criarCarona				controllers.Application.daCarona()
+POST	/criarCarona				controllers.Application.criaCarona()
 
 
 # Map static resources from the /public folder to the /assets URL path
