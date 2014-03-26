@@ -40,4 +40,13 @@ public class Application extends Controller {
 		        Usuario.find.byId(request().username())
 		    ));
 	}
+	
+	@Security.Authenticated(Secured.class)
+	public static Result verSolicitacoes(){
+		return ok(visualizarSolicitacoes.render(
+		        Carona.find.all(), 
+		        SolicitacaoCarona.find.all(),
+		        Usuario.find.byId(request().username())
+		    ));
+	}
 }

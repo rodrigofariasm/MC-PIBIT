@@ -15,6 +15,7 @@ GET  	/                           controllers.Application.index()
 GET   	/verCaronas					controllers.Application.verCaronas()
 GET		/criarCarona				controllers.Application.daCarona()
 POST	/criarCarona				controllers.Application.criaCarona()
+GET		/verSolicitacoes			controllers.Application.verSolicitacoes()
 
 
 # Map static resources from the /public folder to the /assets URL path

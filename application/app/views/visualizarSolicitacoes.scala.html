@@ -1,0 +1,40 @@
+@(caronas: List[Carona], solicitacoes: List[SolicitacaoCarona], user: Usuario)
+@import helper._
+@main("Caronas Inteligentes") {
+	
+<meta charset="utf-8">
+	 <div class="nav-bar">
+	 
+    			<h2>Caronas Inteligentes</h2>
+    			<h4>Olá @user.nome</h4>
+    			<button type="submit" class="btn btn-default" 
+    				onclick="location.href = '@routes.Autenticador.logout()';	">Sair</button>
+		</div>
+		<br>
+<div class="table">
+<div class="row">
+
+        <div class="col-md-1"><b>Solicitante</b></div>
+        <div class="col-md-1"><b>Origem</b></div>
+        <div class="col-md-1"><b>Destino</b></div>
+        <div class="col-md-1"><b>Horario</b></div>
+          </div>
+
+@for(solicitacao <- solicitacoes){
+	 <div class="row">
+        <div class="col-md-1">@solicitacao.user.nome</div>
+        <div class="col-md-1">@solicitacao.origem</div>
+        <div class="col-md-1">@solicitacao.destino</div>
+        <div class="col-md-1">@solicitacao.data.getDate()/@solicitacao.data.getMonth() @solicitacao.data.getHours():@solicitacao.data.getMinutes() </div> <span><button type="submit"
+        class = "btn btn-info">Oferecer Carona</button></span>
+      </div>
+      
+}
+
+</div>
+
+
+
+
+
+}
