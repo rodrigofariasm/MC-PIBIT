@@ -155,3 +155,6 @@ Caused by: java.io.IOException: A operação pedida não pode ser executada num 
 	at org.h2.store.fs.FileDisk.truncate(FilePathDisk.java:419)
 	at org.h2.store.FileStore.setLength(FileStore.java:344)
 	... 40 more
+04-09 10:58:49 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "PLAY_EVOLUTIONS" not found; SQL statement:
+select id, hash, apply_script, revert_script, state, last_problem from play_evolutions where state like 'applying_%' [42102-172]

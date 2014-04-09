@@ -9,6 +9,29 @@ body {
 	font-size: 1px;;
 }
 
+.navbar-wrapper .container {
+  padding-left: 0;
+  padding-right: 0;
+   
+}
+.dropdown-menu,.dropdown-menu:hover,.dropdown-toggle{
+	background-color: #f7f4df;
+
+}
+
+
+.navbar-wrapper .navbar {
+  padding-left: 5px;
+  padding-right: 5px;
+  border: 2px solid #f7f4df;;
+}
+
+.navbar-inverse{
+	background-color: #f7f4df;
+	color: #fffbdb;
+}
+
+
 
 #botaoSair:hover{
 	color: lightcoral;

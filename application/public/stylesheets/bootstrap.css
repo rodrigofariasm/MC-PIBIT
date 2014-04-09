@@ -12,6 +12,30 @@
   *zoom: 1;
 }
 
+.navbar-wrapper .container {
+  padding-left: 0;
+  padding-right: 0;
+   
+}
+.dropdown-menu,.dropdown-menu:hover,.dropdown-toggle{
+	background-color: #f7f4df;
+
+}
+
+.navbar-inverse{
+	background-color: #f7f4df;
+	color: #fffbdb;
+}
+
+
+
+.navbar-wrapper .navbar {
+  padding-left: 15px;
+  padding-right: 15px;
+  border: 2px solid #f7f4df;;
+}
+
+
 .clearfix:before,
 .clearfix:after {
   display: table;

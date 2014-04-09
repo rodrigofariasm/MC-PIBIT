@@ -2,17 +2,43 @@
 
 @main("Caronas Inteligentes") {
 <meta charset="utf-8">
-	<div class="nav-pills">
-		<h1>Caronas Inteligentes</h1>
-		<h4>Olá @user.nome</h4>
-    	<button align="right" type="submit" class="btn btn-default" 
-	    	onclick="location.href = '@routes.Autenticador.logout()';	">Sair</button>
-	</div>
-   	<br>
-   	<br>
-	<form>
-	
-	
-	
-	</form>
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <div align="left">
+      <a class="navbar-brand" href="#">Caronas Inteligentes</a>
+    </div>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav navbar-left">
+      	
+      	<li class="divider"></li>
+        <li class="active"><a href="@routes.Application.index()">Início</a></li>
+        <li class="active"><a href="#">Mensagens</a></li> 
+        <li class="active"><a href="@routes.Application.verSolicitacoes()">Solicitações de Caronas</a></li>
+        <li class="active"><a href="@routes.Application.verCaronas()">Caronas disponíveis</a></li>
+		
+		</li>      
+      </ul>
+     
+      <ul class="nav navbar-nav navbar-right">
+        
+        <li class="divider"></li>
+        		<li><a href="#">@user.email</a></li>
+        		<li class="active"><a href="@routes.Autenticador.logout()">Sair</a></li>
+        		
+        		
+        </li>
+      </ul>
+  </div>
+</nav>
+
 }
