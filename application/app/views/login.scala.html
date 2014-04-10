@@ -7,7 +7,10 @@
     <div class="nav-bar">
     		<h1>Caronas Inteligentes</h1>
     		</div>
-    		<div class="form-actions">
+    		
+    		
+    		
+<div class="form-actions">
 			
 
 	<form class="form-signin" role="form" action="@routes.Autenticador.authenticate()" method="post">
@@ -30,13 +33,14 @@
 				
 			    </div>
 			    </form>
-			    @if(flash.containsKey("erro")){
-				<div class="alert alert-danger container">
+			  
+		  @if(flash.containsKey("erro")){
+				<div class="alert alert-danger">
   					@flash.get("erro")
 				</div>
 			}
 			@if(flash.containsKey("success")){
-				<div class="alert alert-success container">
+				<div class="alert alert-success">
 					@flash.get("success")
 				</div>
 			}

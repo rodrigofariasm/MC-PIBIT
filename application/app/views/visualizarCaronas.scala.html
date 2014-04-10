@@ -16,8 +16,6 @@
       <a class="navbar-brand" href="#">Caronas Inteligentes</a>
     </div>
     </div>
-
-    <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-left">
       	
@@ -29,26 +27,20 @@
 		
 		</li>      
       </ul>
-     
       <ul class="nav navbar-nav navbar-right">
-        
         <li class="divider"></li>
         		<li><a href="#">@user.email</a></li>
         		<li class="active"><a href="@routes.Autenticador.logout()">Sair</a></li>
-        		
-        		
         </li>
       </ul>
   </div>
 </nav>
 
-
-
 <br></br><br></br>
-
 <div align="center">
 	<h3>Caronas disponíveis</h3>
 	<br><br>
+</div>
 <div class="table">
 <div class="row">
 
@@ -66,16 +58,12 @@
         <div class="col-md-1">@carona.origem</div>
         <div class="col-md-1">@carona.destino</div>
         <div class="col-md-1">@carona.vagas</div>
-        <div class="col-md-1">@carona.data.getDate()/@carona.data.getMonth() @carona.data.getHours():@carona.data.getMinutes() </div> <span><button type="submit"
-        class = "btn btn-info">Pegar carona</button></span>
+        <div class="col-md-1">@carona.data.getDate()/@carona.data.getMonth() @carona.data.getHours():@carona.data.getMinutes() </div>
+         <span>@form(routes.Application.pegarCarona(carona.ID)) {
+         <button type="submit" class = "btn btn-success">Pegar carona</button></span>
       </div>
-      
+</div>
 }
 
-</div>
-</div>
-
-
-
-
+}
 }

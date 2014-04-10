@@ -1,9 +1,16 @@
 body {
-  padding-top: 40px;
+  padding-top: 10px;
   padding-bottom: 40px;
-  background-color: light-gray	;
+  background-color: light-gray;
 }
 
+.form-body {
+	padding-top: 100px;
+  	padding-bottom: 40px;
+  	padding-left: 550px;
+  	padding-right: 550px;
+  	background-color: light-gray;
+}
 
 #h2{
 	font-size: 1px;;
@@ -65,5 +72,5 @@ body {
   margin-bottom: -1px;
 }
 .form-signin input[type="password"] {
-  margin-bottom: 10px;
+  margin-bottom: -1px;
 }

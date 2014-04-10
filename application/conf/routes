@@ -12,11 +12,12 @@ POST  /cadastro                     controllers.Autenticador.efetuaCadastro()
 
 # Home page
 GET  	/                           controllers.Application.index()
-GET   	/verCaronas					controllers.Application.verCaronas()
 GET		/criarCarona				controllers.Application.daCarona()
 POST	/criarCarona				controllers.Application.criaCarona()
 GET		/verSolicitacoes			controllers.Application.verSolicitacoes()
-
+GET   	/verCaronas					controllers.Application.verCaronas()
+POST	/verCaronas					controllers.Application.criarSolicitacao()
+POST	/verCarona/:carona			controllers.Application.pegarCarona(carona: Long)
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)

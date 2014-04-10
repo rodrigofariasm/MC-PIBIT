@@ -7,10 +7,9 @@ create table carona (
   id                        bigint not null,
   origem                    varchar(255),
   destino                   varchar(255),
-  vagas                     varchar(255),
+  vagas                     integer,
   data                      timestamp,
   motorista_email           varchar(255),
-  ponto_de_encontro         varchar(255),
   constraint pk_carona primary key (id))
 ;
 

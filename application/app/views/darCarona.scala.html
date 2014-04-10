@@ -40,5 +40,62 @@
       </ul>
   </div>
 </nav>
+<div class="form-body">
+	<form role="form" method="post" action="@routes.Application.criaCarona()" id="criacaoForm">
+		<div class="form-group" >
+    	<input type="text" class="form-signin" name="origem" placeholder="Origem">
+    	<input type="text" class="form-signin" name="destino"  placeholder="Destino">		
+		</div>
+		<div class="form-group .width=100%">
+		<text class="label label-info">Data e hora que deseja estar no destino</text>
+		<br><br>
+		<input type="date" class="controls" id="data" name="data" placeholder="Data" 
+				 title="Data que deseja dar a carona">
+		<input type="time" class="controls" id="hora" name="hora" placeholder="Hora" 
+				 title="Horario que deseja estar no seu destino">
+				<br>
+		<label class="label label-warning" for="vagas">Vagas</label>
+		<select class="form-controls" name="vagas" title="Vagas disponiveis" placeholder="vagas" id="vagas">
+  			<option>1</option>
+  			<option>2</option>
+  			<option>3</option>
+  			<option>4</option>
+		</select>
+		</div>
+		<div class="controls">
+			<button type="submit" id="botaoCria" class="btn btn-success"> Criar Carona </button> 		
+		</div>
+	</form>
+	    @if(flash.containsKey("erro")){
+				<div class="alert alert-danger">
+  					@flash.get("erro")
+				</div>
+			}
+			@if(flash.containsKey("success")){
+				<div class="alert alert-success ">
+					@flash.get("success")
+				</div>
+			}
+			  </div>
+</div>
+	<script>
+  $("data".load(function()) {
+	  var today = new Date();
+	  var dd = today.getDate();
+	  var mm = today.getMonth()+1; //January is 0!
+	  var yyyy = today.getFullYear();
+	  if(dd<10) {
+	      dd='0'+dd
+	  } 
+
+	  if(mm<10) {
+	      mm='0'+mm
+	  } 
+
+	  today = dd+'/'+mm+'/'+yyyy;
+	  $("#nome").val(today);
+  }
+ </script>
+
 
 }
